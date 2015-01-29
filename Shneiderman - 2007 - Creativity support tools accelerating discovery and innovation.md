@@ -36,8 +36,8 @@ The last part of this article is about research methods. I did not even read thi
 
 ## COMMENT
 
-This article is too 'general' and too abstract. It is full of 泛泛而谈 and looks like a philosophic preach to me. It is a guideline of how we should create tools that supports creativity.
+This article is too 'general' and too abstract. It is full of 泛泛而谈 and looks like a philosophic preach to me. It is a guideline of how we should create tools that supports creativity with no concrete information that helps me digest the author's idea.
 
-The authors English seems great because the article looks more like a literature article than a technical document to me, and thus hard to understand.
+The authors English language using seems great because the article looks more like a literature article than a technical document to me, and thus hard to understand.
 
-I don't like this article. I could not extract usefulness from this article.
+In summary, I don't like this article. I could not extract usefulness from this article.
