@@ -7,7 +7,8 @@ It contains code I write, if any, for this course.
 
 ### Reading
 
-It does not contain reading materials. Instead, it contains writing of reading materials.
+It does not contain reading materials. It would a waste of space to upload those `pdf`s to Github.  
+Instead, it contains writing for reading.
 
 ### Writing
 
