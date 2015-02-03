@@ -1,10 +1,12 @@
 # Challenges and Unsolved Problems
 ###### Robert S. Laramee and Robert Kosara
+###### not finished
+
+## CITATION
+Laramee, R. S., & Kosara, R. (2007). Challenges and Unsolved Problems. In Human-Centered Visualization Environments (pp. 231–254). Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-540-71949-6_5
 
 ## SUMMARY
-
 ### Introducation
-
 This material is a book chapter. It is written in 2006, and published in 2007, which means the situation it described was less than a decade ago. At that time, visualization community was under a dramatic shift, which produces pervasive new directions of research. The author thought it was time for them to come up with a more comprehensive (than before) list of top unsolved problems to direct future evolution in this field.
 
 This chapter is a survey of future challenges and unsolved problems that previously mentioned a lot in visualization literature as well as a summary of grand issues discovered from their own experience. The authors divided visualization challenges into three categories:
