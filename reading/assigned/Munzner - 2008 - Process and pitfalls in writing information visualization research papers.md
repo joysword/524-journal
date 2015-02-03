@@ -9,7 +9,7 @@ Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Re
 This 
 
 ### Initial Stage - Paper Types
-In this part the author introduced 6 types of infovis papers and suggested considering where we want a research project to end.
+In this part the author introduced 6 types of infovis papers and suggested researchers to consider where they want a research project to end.
 
 #### Technique
 Technique papers write about novel algorithms and implement them.
@@ -37,6 +37,7 @@ The most common approach in infovis is formal user studies, where tasks are abst
 Model papers present formalisms and abstractions as opposed to the design or evaluation of any particular technique or system.
 
 Subcategory of model papers include:
+
 * Taxonomy
 * Formalism
 * Commentary
@@ -45,55 +46,61 @@ Subcategory of model papers include:
 The last type of paper is a mixture of previous types.
 
 #### Type Pitfalls
-Some pitfalls need to avoid in the initial stage are:
-* *Design in Technique's Clothing:* validate a new design by providing only performance measurements;
-* *Application Bingo versus Design Study:* apply some random technique to a new problem without thoroughly thinking if the technique is suitable;
-* *All That Coding Means I Deserve A Systems Paper:* write a systems paper only because of significant coding efforts;
-* *Neither Fish Nor Fowl:* try to put paper in multiple categories.
+Some pitfalls need to be avoided in the initial stage are:
+
+* *Design in Technique's Clothing:* don't validate a new design by providing only performance measurements.
+* *Application Bingo versus Design Study:* don't apply some random technique to a new problem without thoroughly thinking if the technique is suitable.
+* *All That Coding Means I Deserve A Systems Paper:* many significant coding efforts do not lead to a systems paper.
+* *Neither Fish Nor Fowl:* papers that try to straddle multiple categories often fail to succeed in any of them.
 
 ### Middle Pitfalls: Visual Encoding
-A major concern in the middle stage is whether visual encoding choices are appropriate and justifiable. In this stage there also are some pitfalls:
-* *Unjustified Visual Encoding:*
-* *Hammer In Search Of Nail:*
-* *2D Good, 3d Better:*
-* *Color Cacophony:*
-* *Rainbows Just Like In The Sky:*
+A major concern in the middle stage is whether visual encoding choices are appropriate and justifiable. In this stage are following pitfalls:
+
+* *Unjustified Visual Encoding:* an infovis design study paper must carefully justify why the visual encoding chosen is appropriate for the problem at hand.
+* *Hammer In Search Of Nail:* discuss potential use cases before proposing a new technique.
+* *2D Good, 3d Better:* use of 3D rather than 2D requires careful justification.
+* *Color Cacophony:* take basic color perception common sense into consideration.
+* *Rainbows Just Like In The Sky:* avoid using a continuous rainbow colormap.
 
 ### Late Pitfalls: Paper Strategy, Tactics, and Results
+The time to consider the late pitfalls is after the bulk of the project work has been done, but before starting to write paper draft.
+
 #### Strategy Pitfalls
-* *What I Did Over My Summer Vacation*
-* *Least Publishable Unit*
-* *Dense As Plutonium*
-* *Bad Slice and Dice*
+* *What I Did Over My Summer Vacation:* do not simply enumerate all activities that required effort when writing a paper.
+* *Least Publishable Unit:* do not try to squeeze too many papers out of the same project.
+* *Dense As Plutonium:* do not try to cram many papers’ worth of content and contributions into one.
+* *Bad Slice and Dice* 
 
 #### Tactical Pitfalls
-* *Stealth Contributions:*
-* *I am So Unique:*
-* *Enumeration Without Justification:*
-* *Sweeping Assertions:*
-* *I Am Utterly Perfect:*
+* *Stealth Contributions:* do not leave contributions implicit or unsaid.
+* *I am So Unique:* do not ignore previous work.
+* *Enumeration Without Justification:* simply citing the previous work is necessary but not sufficient. Explain why this previous work doesn't solve your problem, and what specific limitations of it are addressed by the new approach.
+* *Sweeping Assertions:* a research paper should not contain sweeping unattributed assertions. Cite the source, delete the assertion, or explicitly tag the statement as an observation, a conjecture, or an explanation of the results of the study.
+* *I Am Utterly Perfect:* an explicit discussion of limitations strengthens the paper
 
 #### Results Pitfalls
-* *Unfettered By Time:*
-* *Fear and Loathing of Complexity:*
-* *Straw Man Comparison:*
-* *Tiny Toy Datasets:*
-* *But My Friends Liked It:*
-* *Unjustified Tasks:*
+* *Unfettered By Time:* don't omit time performance, because it is almost always interesting and worth documenting.
+* *Fear and Loathing of Complexity:* technique papers that focus on accelerating performance should usually include some statement of algorithm complexity.
+* *Straw Man Comparison:* compare the new technique against state-of-the-art approaches rather than outdated work.
+* *Tiny Toy Datasets:* avoid using only tiny toy datasets in technique papers that refine previously proposed visual encodings.
+* *But My Friends Liked It:* positive informal evaluation by a few of labmates is not enough to justify usefulness.
+* *Unjustified Tasks:* tasks in a user study should be justified.
 
 ### Final Pitfalls: Style and Submission
+This type of pitfall is for after a full paper draft is written.
+
 #### Writing Style Pitfalls
-* *Deadly Detail Dump:*
-* *Story-Free Captions:*
-* *My Picture Speaks For Itself:*
-* *Grammar is Optional:*
-* *Mistakes Were Made:*
-* *Jargon Attack:*
-* *Nonspecific Use of Large:*
+* *Deadly Detail Dump:* don't simply dump out all the details and declare victory.
+* *Story-Free Captions:* avoid using a single brusque sentence fragment as caption text.
+* *My Picture Speaks For Itself:* don't assume the superiority of the method is obvious. Talk the reader through how the visual representation exposes meaningful structure in the dataset.
+* *Grammar is Optional*
+* *Mistakes Were Made:* avoid using passive voice as much as possible.
+* *Jargon Attack:* avoid jargon as much as possible. Define it if have to use.
+* *Nonspecific Use of Large:* never use the words 'large' or 'huge' without clarifying the order of magnitude under discussion.
 
 #### Submission Pitfalls
-* *Slimy Simultaneous Submission:*
-* *Resubmit Unchanged:*
+* *Slimy Simultaneous Submission*
+* *Resubmit Unchanged* 
 
 ### Pitfalls By Generality
 The author defined *infovis* as visualizations for which spatial representation is chosen, and *scivis* when spatial representation is given. Based on these definitions, the author then summarized the generality of pitfalls discussed:
@@ -110,9 +117,7 @@ This paper is a wonderful work. It gave me a lot of insights while, and after, r
 
 I only had a vague idea about questions like 'what should a paper include', 'how to make a paper more influential'. This paper provided me with a systematic, well-organized classification of infovis papers. Each contained detailed explanation and examples.
 
-Although this paper is about how to write a research paper, but because every paper is a summary, a conclusion, a report of a research project or a part of a research project, this paper is actually a guidance of research itself.
-
-I believe that there are cases where people did a good research project but did not reflect it very well in their papers, but I believe more that a bad paper comes from a failed research project.
+Although the title indicates this article is about how to write a research paper, but this paper is actually a guidance of research itself, as many pitfalls needs to be taken into consideration at the start of, or in the middle of a research project.
 
 In summary, to avoid pitfalls in writing research papers, the most important thing to do is to keep these pitfalls in mind and avoid them when conducting research. (Maybe except for Final Pitfalls, which are merely for writing papers, rather than for doing research)
 
