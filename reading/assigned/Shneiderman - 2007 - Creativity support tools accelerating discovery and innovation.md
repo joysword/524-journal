@@ -1,6 +1,9 @@
 # Creativity Support Tools Accelerating Discovery and Innovation 
 ###### Ben Shneiderman
 
+## CITATION
+Shneiderman, B. (2007). Creativity Support Tools Accelerating Discovery and Innovation. Communications of the ACM, 50(12), 20 – 32.
+
 ## SUMMARY
 
 This article talked about creativity support tools.
