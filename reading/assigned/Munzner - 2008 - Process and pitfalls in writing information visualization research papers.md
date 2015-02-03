@@ -6,10 +6,10 @@ Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Re
 
 ## SUMMARY
 ### Introduction
-This 
+This paper introduced a series of pitfalls and recur in many rejected infovis papers. It is structured around a chronological model of the information visualization research process.
 
 ### Initial Stage - Paper Types
-In this part the author introduced 6 types of infovis papers and suggested researchers to consider where they want a research project to end.
+In this part the author introduced 6 types of infovis papers and suggested researchers to consider where they want a research project to end before they start.
 
 #### Technique
 Technique papers write about novel algorithms and implement them.
