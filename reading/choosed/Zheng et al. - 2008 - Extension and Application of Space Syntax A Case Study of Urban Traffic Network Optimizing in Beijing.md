@@ -28,8 +28,12 @@ The authors calculated Accessibility value throughout the city, then added 10 di
 10. on the basis of (7), add the 6 ones in (6).
 
 Then the authors showed the optimization results to us using the following two images:
+
 ![](http://ieeexplore.ieee.org/ielx5/4634794/4634795/4634862/html/img/4634862-fig-4-hires.gif "Contrast of integration under each project")
+[Contrast of integration under each project]
+
 ![](http://ieeexplore.ieee.org/ielx5/4634794/4634795/4634862/html/img/4634862-fig-5-hires.gif "Improvement of integration and accessibility")
+[Improvement of integration and accessibility]
 
 The authors concluded, based on the results, that `adding 6~8 more radialized roads is the best choice in reality`.
 
