@@ -3,7 +3,7 @@
 ###### not finished
 
 ## CITATION
-Munzner, T. (2009). A Nested Model for Visualization Design and Validation. IEEE Transactions on Visualization and Computer Graphics, 15(6), 921–928. doi:10.1109/TVCG.2009.111
+Munzner, T. (2009). A Nested Model for Visualization Design and Validation. *IEEE Transactions on Visualization and Computer Graphics, 15*(6), 921–928. doi:10.1109/TVCG.2009.111
 
 ## SUMMARY
 ### Introduction
@@ -59,6 +59,7 @@ Some examples that shows how this paper be a good example in paper writing are a
 * *Sweeping Assertions:* In **Introduction**, the author explicitly stated 'conjecture' when making an observation.
 * *Stealth Contributions:* In **Introduction**, the author explicitly stated the main contribution and the secondary contribution of this paper.
 * *Mistakes Were Made:* In the whole paper, the author avoided using the passive voice.
+* *Story-Free Caption:* In the whole paper, the author included useful information in figure captions, making them as standalone as possible.
 
 ## REFERENCE
-[1] Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Research Papers. In A. Kerren, J. T. Stasko, J.-D. Fekete, & C. North (Eds.), Information Visualization: : Human-Centered Issues and Perspectives (Vol. 4950, pp. 134–153). Springer Berlin Heidelberg. doi:10.1007/978-3-540-70956-5_6
+[1] Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Research Papers. In A. Kerren, J. T. Stasko, J.-D. Fekete, & C. North (Eds.), Information Visualization: Human-Centered Issues and Perspectives (Vol. 4950, pp. 134–153). Springer Berlin Heidelberg. doi:10.1007/978-3-540-70956-5_6

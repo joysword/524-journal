@@ -3,7 +3,7 @@
 ###### not finished
 
 ## CITATION
-Laramee, R. S., & Kosara, R. (2007). Challenges and Unsolved Problems. In Human-Centered Visualization Environments (pp. 231–254). Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-540-71949-6_5
+Laramee, R. S., & Kosara, R. (2007). Challenges and Unsolved Problems. In *Human-Centered Visualization Environments* (pp. 231–254). Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-540-71949-6_5
 
 ## SUMMARY
 ### Introducation

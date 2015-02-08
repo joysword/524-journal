@@ -2,7 +2,7 @@
 ###### Tamara Munzner
 
 ## CITATION
-Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Research Papers. In A. Kerren, J. T. Stasko, J.-D. Fekete, & C. North (Eds.), Information Visualization: : Human-Centered Issues and Perspectives (Vol. 4950, pp. 134–153). Springer Berlin Heidelberg. doi:10.1007/978-3-540-70956-5_6
+Munzner, T. (2008). Process and Pitfalls in Writing Information Visualization Research Papers. In A. Kerren, J. T. Stasko, J.-D. Fekete, & C. North (Eds.), *Information Visualization: Human-Centered Issues and Perspectives* (Vol. 4950, pp. 134–153). Springer Berlin Heidelberg. doi:10.1007/978-3-540-70956-5_6
 
 ## SUMMARY
 ### Introduction
