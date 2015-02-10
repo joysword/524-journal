@@ -8,7 +8,7 @@ Sedlmair, M., Meyer, M., & Munzner, T. (2012). Design study methodology: Reflect
 ### Introduction
 This paper provided, for the first time, a discussion about design study methodology, including a clear definition of design studies as well as practical guidance for conducting them effectively.
 
-They articulated two axes, *task clarity* and *information location*, to reason about **what contributions design studies can make**, **when they are an appropriate research device**, and **how they are unique from other approaches**.
+They articulated two axes, *task clarity* and *information location*, to reason about *what contributions design studies can make*, *when they are an appropriate research device*, and *how they are unique from other approaches*.
 
 They proposed a *nine-stage framework*: *learn*, *winnow*, *cast*, *discover*, *design*, *implement*, *deploy*, *reflect*, and *write*.
 
@@ -30,12 +30,10 @@ Related work that are potentially interesting to me include:
 [39] H. Lam, E. Bertini, P. Isenberg, C. Plaisant, and S. Carpendale. Empirical studies information visualization: Seven scenarios. *IEEE Trans. Visualization and Computer Graphics (TVCG)*, 2012. Appeared online: 30 Nov. 2011.
 
 ### Characterizing Design Studies
-
 #### Definitions
 A design study is defined by the authors as follows (with five main concepts highlighted):
-```
-A design study is a project in which visualization researchers **analyze** a specific **real-world problem** faced by domain experts, **design** a visualization system that supports solving this problem, **validate** the design, and **reflect** about lessons learned in order to refine visualization design guidelines.
-```
+
+_A design study is a project in which visualization researchers **analyze** a specific **real-world problem** faced by domain experts, **design** a visualization system that supports solving this problem, **validate** the design, and **reflect** about lessons learned in order to refine visualization design guidelines._
 
 Some lessons I learned:
 
@@ -70,24 +68,24 @@ The goal of this stage is to identify the most promising collaborations. The aut
 
 There are some questions to ask in this stage:
 
-**PRACTICAL CONSIDERATIONS (can be easily checked in initial meetings)**
+**PRACTICAL CONSIDERATIONS** (can be easily checked in initial meetings)  
 **_Data_**: *Does real data exist, is it enough, and can I have it?*  
 **_Engagement_**: *How much time do they have for the project, and how much time do I have? How much time can I spend in their environment?**  
 
-**INTELLECTUAL CONSIDERATIONS (should be kept in mind during initial meetings)**
-**_Problem_**: *Is there an interesting visualization research question in this problem?*
-**_Need_**: *Is there a real need or are existing approaches good enough?*
-**_Task_**: *Am I addressing a real task? How long will the need persist? How central is the task, and to how many people?*
+**INTELLECTUAL CONSIDERATIONS** (should be kept in mind during initial meetings)  
+**_Problem_**: *Is there an interesting visualization research question in this problem?*  
+**_Need_**: *Is there a real need or are existing approaches good enough?*  
+**_Task_**: *Am I addressing a real task? How long will the need persist? How central is the task, and to how many people?*  
 
 **INTERPERSONAL CONSIDERATIONS**
 
 ##### Cast: Identify Collaborator Roles
 
-critical roles:
+critical roles:  
 **front-line analyst**: the domain expert end user doing the actual data analysis, and is the person who will use the new visualization tool.  
 **gatekeeper**: the person with the power to approve or block the project, including authorizing people to spend time on the project and release of the data.
 
-non-critical roles:
+non-critical roles:  
 **connectors**: people who connect the visualization researcher to other interesting people, usually front-line analysts.  
 **translators**: people who are very good in abstracting their domain problems into a more generic form, and relating them to larger-context domain goals.  
 **co-authors**  
@@ -103,8 +101,9 @@ non-critical roles:
 ##### Reflect: Confirm, Refine, Reject, Propose Guidelines
 ##### Write: Design Study Paper
 
-### Summary of the 32 design study pitfalls**
+### Summary of the 32 design study pitfalls
 no. | pitfall | stage
+----|----|----
 PF-1 | premature advance: jumping forward over stages | general
 PF-2 | premature start: insufficient knowledge of vis literature | learn
 PF-3 | premature commitment: collaboration with wrong people | winnow
