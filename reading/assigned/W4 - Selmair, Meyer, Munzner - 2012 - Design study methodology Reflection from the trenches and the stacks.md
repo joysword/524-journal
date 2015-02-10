@@ -155,6 +155,10 @@ Visualization researchers should avoid thinking that a paper without a technique
 
 Also should be avoided is including too much domain background in the paper. Design study papers should include only the bare minimum of domain knowledge that is required to understand the abstractions of the task and data.
 
+The order of presentation and argumentation in a paper should follow a logical thread, instead of following the actual chronology of events.
+
+In technique-driven work, the goal of novelty means that there is a rush to publish as soon as possible. In problem-driven work, attempting to publish too soon is a common mistake, leading to a submission that is shallow and lacks depth.
+
 ### Summary of the 32 design study pitfalls
 no. | pitfall | stage
 ----|----|----
