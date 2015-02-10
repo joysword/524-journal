@@ -49,7 +49,7 @@ The **information location** axis characterizes how much information is only ava
 
 #### Design Study Methodology Suitability
 
-![]()
+![](http://joysword.com/doc/cs524/Selmair-2012-1.png)
 
 [Fig. 1. The task clarity and information location axes as a way to analyze the suitability of design study methodology. Red and blue areas mark regions where design studies may be the wrong methodological choice.]
 
