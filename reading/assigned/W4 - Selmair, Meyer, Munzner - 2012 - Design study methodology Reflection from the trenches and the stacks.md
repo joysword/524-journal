@@ -25,7 +25,7 @@ Design study methodology were not discussed a lot before this paper.
 Related work that are potentially interesting to me include:
 
 [42] D. Lloyd and J. Dykes. Human-centered approaches in geovisualization design: investigating multiple methods through a long-term case study. *IEEE Trans. Visualization and Computer Graphics (Proc. InfoVis 2011)*, 17(12):498–507, 2011.  
-[88] J. J. van Wijk. *Views on visualization. IEEE Trans. Visualization and Computer Graphics (TVCG)*, 12(4):421–432, 2006.  
+[88] J. J. van Wijk. Views on visualization. *IEEE Trans. Visualization and Computer Graphics (TVCG)*, 12(4):421–432, 2006.  
 [13] S. Carpendale. Evaluating information visualizations. In A. Kerren, J. T. Stasko, J.- D. Fekete, and C. North, editors, *Information Visualization: Human-Centered Issues and Perspectives*, volume 4950, pages 19–45. Springer LNCS, 2008. and  
 [39] H. Lam, E. Bertini, P. Isenberg, C. Plaisant, and S. Carpendale. Empirical studies information visualization: Seven scenarios. *IEEE Trans. Visualization and Computer Graphics (TVCG)*, 2012. Appeared online: 30 Nov. 2011.
 
