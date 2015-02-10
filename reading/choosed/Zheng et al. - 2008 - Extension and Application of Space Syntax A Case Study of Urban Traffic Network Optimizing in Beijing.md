@@ -2,7 +2,7 @@
 ###### Zheng Xinqi, Zhao Lu, Fu Meichen, Wang Shuqing
 
 ## CITATION
-Zheng, X., Zhao, L., Fu, M., & Wang, S. (2008). Extension and Application of Space Syntax A Case Study of Urban Traffic Network Optimizing in Beijing. In *Workshop on Power Electronics and Intelligent Transportation System* (pp. 291–295). IEEE. doi:10.1109/PEITS.2008.22
+Zheng, X., Zhao, L., Fu, M., & Wang, S. (2008). Extension and Application of Space Syntax A Case Study of Urban Traffic Network Optimizing in Beijing. In *2008 Workshop on Power Electronics and Intelligent Transportation System* (pp. 291–295). IEEE. doi:10.1109/PEITS.2008.22
 
 ## SUMMARY
 
