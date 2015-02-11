@@ -27,7 +27,7 @@ A simple test was conducted to validate the usefulness of the system.
 
 ## COMMENT
 
-### For STAR Report
+### For STAR report
 
 This article is not very new, written in 2006. But it showed an interesting application of visualization/VR in urban planning.
 
