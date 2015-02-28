@@ -65,13 +65,13 @@ Last but not least, the widely used Point Cloud Library (PCL) [http://ieeexplore
 ### 7. Conclusion
 
 ### 8. References
-[1] R. Reddy, M. Ho ̈ferlin, M. Dambier, and D. Weiskopf, “Visual Analytics for Dynamic Evacuation Planning,” in International Workshop on Visual Analytics, 2012, pp. 13–17.
-[2] W. Ribarsky, K. R. Subramanian, J. Liu, O. Obirieze, and J. Guest, “Mobile Application for First Response and Emergency Evacuation in Urban Settings,” in International Conference and Exhibition on Computing for Geospatial Research & Application, 2010.
-[3] S. Kim, R. Maciejewski, K. Ostmo, E. J. Delp, T. F. Collins, and D. S. Ebert, “Mobile Analytics for Emergency Response and Training,” Information Visualization, vol. 7, no. 1, pp. 77–88, 2008.
-[5] A. Kleiner and C. Dornhege, “Operator-Assistive Mapping in Harsh Environments,” in IEEE International Workshop on Safety, Security & Rescue Robotics, 2009, pp. 1–6.
-[6] J. Pellenz and D. Paulus, “Stable Mapping Using a Hyper Particle Filter,” in Robot Soccer World Cup XIII, 2009, pp. 252–263.
-[7] S. Wirth and J. Pellenz, “Exploration Transform: A Stable Exploring Algorithm for Robots in Rescue Environments,” in IEEE International Workshop on Safety, Security & Rescue Robotics, 2007, pp. 1–5.
-[8] C. Dornhege and A. Kleiner, “A Frontier-Void-based Approach for Autonomous Exploration in 3D,” in IEEE International Symposium on Safety, Security & Rescue Robotics, 2011, pp. 351–356.
-[10] R. Richter and J. Do ̈llner, “Out-of-core Real-time Visualization of Massive 3D Point Clouds,” in Computer Graphics, Virtual Reality, Visualisation and Interaction in Africa, 2010, pp. 121–128.
-[11] H. Xu and B. Chen, “Stylized Rendering of 3D Scanned Real World Environments,” in Symposium on Non-photorealistic Animation and Rendering, 2004, pp. 25–34.
-[12] R. Pintus, E. Gobbetti, and M. Agus, “Real-time Rendering of Massive Unstructured Raw Point Clouds using Screen-space Operators,” in International Conwference on Virtual Reality, Archaeology and Cultural Heritage, 2011, pp. 105–112.
+[1] R. Reddy, M. Ho ̈ferlin, M. Dambier, and D. Weiskopf, “Visual Analytics for Dynamic Evacuation Planning,” in *International Workshop on Visual Analytics*, 2012, pp. 13–17.  
+[2] W. Ribarsky, K. R. Subramanian, J. Liu, O. Obirieze, and J. Guest, “Mobile Application for First Response and Emergency Evacuation in Urban Settings,” in *International Conference and Exhibition on Computing for Geospatial Research & Application*, 2010.  
+[3] S. Kim, R. Maciejewski, K. Ostmo, E. J. Delp, T. F. Collins, and D. S. Ebert, “Mobile Analytics for Emergency Response and Training,” *Information Visualization*, vol. 7, no. 1, pp. 77–88, 2008.  
+[5] A. Kleiner and C. Dornhege, “Operator-Assistive Mapping in Harsh Environments,” in *IEEE International Workshop on Safety, Security & Rescue Robotics*, 2009, pp. 1–6.  
+[6] J. Pellenz and D. Paulus, “Stable Mapping Using a Hyper Particle Filter,” in *Robot Soccer World Cup XIII*, 2009, pp. 252–263.  
+[7] S. Wirth and J. Pellenz, “Exploration Transform: A Stable Exploring Algorithm for Robots in Rescue Environments,” in *IEEE International Workshop on Safety, Security & Rescue Robotics*, 2007, pp. 1–5.  
+[8] C. Dornhege and A. Kleiner, “A Frontier-Void-based Approach for Autonomous Exploration in 3D,” in *IEEE International Symposium on Safety, Security & Rescue Robotics*, 2011, pp. 351–356.  
+[10] R. Richter and J. Do ̈llner, “Out-of-core Real-time Visualization of Massive 3D Point Clouds,” in *Computer Graphics, Virtual Reality, Visualisation and Interaction in Africa*, 2010, pp. 121–128.  
+[11] H. Xu and B. Chen, “Stylized Rendering of 3D Scanned Real World Environments,” in *Symposium on Non-photorealistic Animation and Rendering*, 2004, pp. 25–34.  
+[12] R. Pintus, E. Gobbetti, and M. Agus, “Real-time Rendering of Massive Unstructured Raw Point Clouds using Screen-space Operators,” in *International Conwference on Virtual Reality, Archaeology and Cultural Heritage*, 2011, pp. 105–112.
