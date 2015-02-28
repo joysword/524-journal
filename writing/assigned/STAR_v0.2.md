@@ -39,16 +39,16 @@ In 2014, Bock, A. et al. [http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnu
 
 This is the first system facing post-disaster USAR scenarios that uses 3D point cloud for visualization. Before this system, most of visualization-oriented work published in the field is concerned with pre-disaster evacuation planning. Reddy et al. performed notable work based on analyzing possible bottlenecks of escape routes [1]. Ribarsky et al. presented a system organizing first responders in intact structures [2]. Kim et al. developed a system enhancing the situational awareness of responders using a mobile visual analytics tool [3]. As for post-disaster USAR planning, existing systems are mostly based on 2D representations [5][6][7][8].
 
-![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-1-hires.gif)
+![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-1-hires.gif)  
 **Figure 4.1** the system applied to a building at Tohoku University. Different views support a comprehensive understanding, allowing the IC to select and inspect paths that reach a Point of Interest, which are integrated into the rendering. Inspection and path computation is based on a set of derived attributes (c).
 
-![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-2-hires.gif)
+![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-2-hires.gif)  
 **Figure 4.2** a screenshot showing our system for a typical scenario. each view can be maximized to fill the entire screen for in-depth inspection. an overview (left) shows a top-down view of the building to provide context, a multi-view (right) shows the different components of our system
 
-![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-3-hires.gif)
+![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-3-hires.gif)  
 **Figure 4.3** these images show different rendering techniques of the same location in the Tohoku dataset (a-d). Rendering the individual voxels as points does not allow for an immersive rendering as depth-cues are missing (a). Binning the point cloud and representing each voxel as a axis-aligned box solves this problem (b). In order to enhance the contours of the scene and produce a better immersion, image-space enhancements were performed (c). Alternatively, the IC can choose a rendering method imitating the output of range imaging cameras (d). It is possible to render the point cloud in stereoscopic fisheye that can be used for dome surfaces or VR glasses (e). The voxel size's effect during binning is shown for the rescue arena dataset (f-h).
 
-![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-4-large.gif)
+![](http://ieeexplore.ieee.org/ielx7/7002491/7017643/7017652/html/img/7017652-fig-4-large.gif)  
 **Figure 4.4** Views supporting comparative path analysis. (a) the profile plot presents the change of an attribute along paths; here the distance to the closest hazard. (b) parallel coordinates plot showing correlations between attributes.
 
 #### notes about point cloud
