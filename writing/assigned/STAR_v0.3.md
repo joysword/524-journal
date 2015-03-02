@@ -120,10 +120,10 @@ The system loads the data within the current field-of-view dynamically, allowing
 
 #### examples
 
-!()[http://joysword.com/doc/cs524/star-5.5.png]  
+![](http://joysword.com/doc/cs524/star-5.5.png)  
 **Figure 5.5 Geometry generation.** (a) Original area. (b) Automatic subdivision of the area. (c) Additional streets are generated in order to enforce egress rule.
 
-!()[http://joysword.com/doc/cs524/star-5.6.png]  
+![](http://joysword.com/doc/cs524/star-5.6.png)  
 **Figure 5.6 Exemplary choroplethic visualizations of urban simulation data and views.** (a) A screen snapshot from the Indicator system supported by UrbanSim. (b) A rainbow color map used to represent changes in households/buildings for the initial set of parcels; blue corresponds to no change and green/yellow/red corresponds to a small/medium/large increase in the number of households. (c) The original layout of an urban area before the simulation and (d) generated layout after the simulation.
 
 ### 6. Interviews
