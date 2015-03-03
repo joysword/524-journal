@@ -1,0 +1,247 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{\uppercase{MZWVG07}}
+
+\bibitem[AK99]{al1999using}
+\textsc{Al-Kodmany K.}:
+\newblock Using visualization techniques for enhancing public participation in
+  planning and design: process, implementation, and evaluation.
+\newblock \emph{Landscape and urban planning 45}, 1 (1999), 37--45.
+
+\bibitem[Bat93]{batty1993urban}
+\textsc{Batty M.}:
+\newblock Urban modeling in computer-graphic and geographic information system
+  environments.
+\newblock \emph{Environment and Planning B 19} (1993), 663--663.
+
+\bibitem[Bat97]{batty1997virtual}
+\textsc{Batty M.}:
+\newblock Virtual geography.
+\newblock \emph{Futures 29}, 4 (1997), 337--352.
+
+\bibitem[BKLR14]{bock2014interactive}
+\textsc{Bock A., Kleiner A., Lundberg J., Ropinski T.}:
+\newblock An interactive visualization system for urban search \& rescue
+  mission planning.
+\newblock In \emph{Safety, Security, and Rescue Robotics (SSRR), 2014 IEEE
+  International Symposium on} (2014), IEEE, pp.~1--7.
+
+\bibitem[BSX06]{batty2006visualization}
+\textsc{Batty M., Steadman P., Xie Y.}:
+\newblock Visualization in spatial modeling.
+\newblock In \emph{Complex artificial environments}. Springer, 2006,
+  pp.~49--70.
+
+\bibitem[DB07]{dykes2007geographically}
+\textsc{Dykes J., Brunsdon C.}:
+\newblock Geographically weighted visualization: interactive graphics for
+  scale-varying exploratory analysis.
+\newblock \emph{Visualization and Computer Graphics, IEEE Transactions on 13},
+  6 (2007), 1161--1168.
+
+\bibitem[DBN06]{dorling2006worldmapper}
+\textsc{Dorling D., Barford A., Newman M.}:
+\newblock Worldmapper: the world as you've never seen it before.
+\newblock \emph{Visualization and Computer Graphics, IEEE Transactions on 12},
+  5 (2006), 757--764.
+
+\bibitem[DK13]{dornhege2013frontier}
+\textsc{Dornhege C., Kleiner A.}:
+\newblock A frontier-void-based approach for autonomous exploration in 3d.
+\newblock \emph{Advanced Robotics 27}, 6 (2013), 459--468.
+
+\bibitem[F{\etalchar{*}}03]{fabio2003point}
+\textsc{Fabio R., et~al.}:
+\newblock From point cloud to surface: the modeling and visualization problem.
+\newblock \emph{International Archives of Photogrammetry, Remote Sensing and
+  Spatial Information Sciences 34}, 5 (2003), W10.
+
+\bibitem[FWXL10]{fu2010logistics}
+\textsc{Fu C., Wang Y., Xu Y., Li Q.}:
+\newblock The logistics network system based on the google maps api.
+\newblock In \emph{Logistics Systems and Intelligent Management, 2010
+  International Conference on} (2010), vol.~3, IEEE, pp.~1486--1489.
+
+\bibitem[FZ03]{fruh2003constructing}
+\textsc{Fruh C., Zakhor A.}:
+\newblock Constructing 3d city models by merging aerial and ground views.
+\newblock \emph{Computer Graphics and Applications, IEEE 23}, 6 (2003), 52--61.
+
+\bibitem[HJO{\etalchar{*}}01]{hertzmann2001image}
+\textsc{Hertzmann A., Jacobs C.~E., Oliver N., Curless B., Salesin D.~H.}:
+\newblock Image analogies.
+\newblock In \emph{Proceedings of the 28th annual conference on Computer
+  graphics and interactive techniques} (2001), ACM, pp.~327--340.
+
+\bibitem[HRD{\etalchar{*}}12]{holzer2012adaptive}
+\textsc{Holzer S., Rusu R.~B., Dixon M., Gedikli S., Navab N.}:
+\newblock Adaptive neighborhood selection for real-time surface normal
+  estimation from organized point cloud data using integral images.
+\newblock In \emph{Intelligent Robots and Systems (IROS), 2012 IEEE/RSJ
+  International Conference on} (2012), IEEE, pp.~2684--2689.
+
+\bibitem[KD09]{kleiner2009operator}
+\textsc{Kleiner A., Dornhege C.}:
+\newblock Operator-assistive mapping in harsh environments.
+\newblock In \emph{Safety, Security \& Rescue Robotics (SSRR), 2009 IEEE
+  International Workshop on} (2009), IEEE, pp.~1--6.
+
+\bibitem[KMO{\etalchar{*}}08]{kim2008mobile}
+\textsc{Kim S., Maciejewski R., Ostmo K., Delp E.~J., Collins T.~F., Ebert
+  D.~S.}:
+\newblock Mobile analytics for emergency response and training.
+\newblock \emph{Information Visualization 7}, 1 (2008), 77--88.
+
+\bibitem[Mer07]{merrell2007example}
+\textsc{Merrell P.}:
+\newblock Example-based model synthesis.
+\newblock In \emph{Proceedings of the 2007 symposium on Interactive 3D graphics
+  and games} (2007), ACM, pp.~105--112.
+
+\bibitem[MWH{\etalchar{*}}06]{muller2006procedural}
+\textsc{M{\"u}ller P., Wonka P., Haegler S., Ulmer A., Van~Gool L.}:
+\newblock \emph{Procedural modeling of buildings}, vol.~25.
+\newblock ACM, 2006.
+
+\bibitem[MZWVG07]{muller2007image}
+\textsc{M{\"u}ller P., Zeng G., Wonka P., Van~Gool L.}:
+\newblock Image-based procedural modeling of facades.
+\newblock In \emph{ACM Transactions on Graphics (TOG)} (2007), vol.~26, ACM,
+  p.~85.
+
+\bibitem[NOS15]{nagai2015tomographic}
+\textsc{Nagai Y., Ohtake Y., Suzuki H.}:
+\newblock Tomographic surface reconstruction from point cloud.
+\newblock \emph{Computers \& Graphics 46} (2015), 55--63.
+
+\bibitem[PDBB00]{pinnel2000design}
+\textsc{Pinnel L.~D., Dockrey M., Brush A.~B., Borning A.}:
+\newblock \emph{Design of visualizations for urban modeling}.
+\newblock Springer, 2000.
+
+\bibitem[PGA11]{Pintus:2011:RRM:2384495.2384513}
+\textsc{Pintus R., Gobbetti E., Agus M.}:
+\newblock Real-time rendering of massive unstructured raw point clouds using
+  screen-space operators.
+\newblock In \emph{Proceedings of the 12th International Conference on Virtual
+  Reality, Archaeology and Cultural Heritage} (Aire-la-Ville, Switzerland,
+  Switzerland, 2011), VAST'11, Eurographics Association, pp.~105--112.
+\newblock URL: \url{http://dx.doi.org/10.2312/VAST/VAST11/105-112}, \href
+  {http://dx.doi.org/10.2312/VAST/VAST11/105-112}
+  {\path{doi:10.2312/VAST/VAST11/105-112}}.
+
+\bibitem[PM01]{parish2001procedural}
+\textsc{Parish Y.~I., M{\"u}ller P.}:
+\newblock Procedural modeling of cities.
+\newblock In \emph{Proceedings of the 28th annual conference on Computer
+  graphics and interactive techniques} (2001), ACM, pp.~301--308.
+
+\bibitem[PP10]{pellenz2010stable}
+\textsc{Pellenz J., Paulus D.}:
+\newblock Stable mapping using a hyper particle filter.
+\newblock In \emph{RoboCup 2009: Robot Soccer World Cup XIII}. Springer, 2010,
+  pp.~252--263.
+
+\bibitem[PPP09]{pejic2009expert}
+\textsc{Pejic A., Pletl S., Pejic B.}:
+\newblock An expert system for tourists using google maps api.
+\newblock In \emph{Intelligent Systems and Informatics, 2009. SISY'09. 7th
+  International Symposium on} (2009), IEEE, pp.~317--322.
+
+\bibitem[PSKN06]{panse2006visualization}
+\textsc{Panse C., Sips M., Keim D.~A., North S.~C.}:
+\newblock Visualization of geo-spatial point sets via global shape
+  transformation and local pixel placement.
+\newblock \emph{Visualization and Computer Graphics, IEEE Transactions on 12},
+  5 (2006), 749--756.
+
+\bibitem[RC11]{rusu20113d}
+\textsc{Rusu R.~B., Cousins S.}:
+\newblock 3d is here: Point cloud library (pcl).
+\newblock In \emph{Robotics and Automation (ICRA), 2011 IEEE International
+  Conference on} (2011), IEEE, pp.~1--4.
+
+\bibitem[RD10]{richter2010out}
+\textsc{Richter R., D{\"o}llner J.}:
+\newblock Out-of-core real-time visualization of massive 3d point clouds.
+\newblock In \emph{Proceedings of the 7th International Conference on Computer
+  Graphics, Virtual Reality, Visualisation and Interaction in Africa} (2010),
+  ACM, pp.~121--128.
+
+\bibitem[RHDW12]{reddy2012visual}
+\textsc{Reddy R., H{\"o}ferlin M., Dambier M., Weiskopf D.}:
+\newblock Visual analytics for dynamic evacuation planning.
+\newblock In \emph{Proceedings of EuroVA 2012: International Workshop on Visual
+  Analytics} (2012), pp.~13--17.
+
+\bibitem[RSL{\etalchar{*}}10]{ribarsky2010mobile}
+\textsc{Ribarsky W., Subramanian K.~R., Liu J., Obirieze O., Guest J.}:
+\newblock Mobile application for first response and emergency evacuation in
+  urban settings.
+\newblock In \emph{Proceedings of the 1st International Conference and
+  Exhibition on Computing for Geospatial Research \& Application} (2010), ACM,
+  p.~62.
+
+\bibitem[RWF02]{ribarsky2002urban}
+\textsc{Ribarsky W., Wasilewski T., Faust N.}:
+\newblock From urban terrain models to visible cities.
+\newblock \emph{Computer Graphics and Applications, IEEE 22}, 4 (2002), 10--15.
+
+\bibitem[VABW09]{vanegas2009visualization}
+\textsc{Vanegas C.~A., Aliaga D.~G., Benes B., Waddell P.}:
+\newblock Visualization of simulated urban spaces: Inferring parameterized
+  generation of streets, parcels, and aerial imagery.
+\newblock \emph{Visualization and Computer Graphics, IEEE Transactions on 15},
+  3 (2009), 424--435.
+
+\bibitem[Wad02]{waddell2002urbansim}
+\textsc{Waddell P.}:
+\newblock Urbansim: Modeling urban development for land use, transportation,
+  and environmental planning.
+\newblock \emph{Journal of the American Planning Association 68}, 3 (2002),
+  297--314.
+
+\bibitem[Wad11]{waddell2011integrated}
+\textsc{Waddell P.}:
+\newblock Integrated land use and transportation planning and modelling:
+  addressing challenges in research and practice.
+\newblock \emph{Transport Reviews 31}, 2 (2011), 209--229.
+
+\bibitem[WLL13]{wu2013design}
+\textsc{Wu Y., Liang Z., Liu L.}:
+\newblock Design and implementation of tourism information system based on
+  google maps api.
+\newblock In \emph{Geoinformatics (GEOINFORMATICS), 2013 21st International
+  Conference on} (2013), IEEE, pp.~1--4.
+
+\bibitem[WP07]{wirth2007exploration}
+\textsc{Wirth S., Pellenz J.}:
+\newblock Exploration transform: A stable exploring algorithm for robots in
+  rescue environments.
+\newblock In \emph{Safety, Security and Rescue Robotics, 2007. SSRR 2007. IEEE
+  International Workshop on} (2007), IEEE, pp.~1--5.
+
+\bibitem[WU04]{waddell2004introduction}
+\textsc{Waddell P., Ulfarsson G.~F.}:
+\newblock Introduction to urban simulation: Design and development of
+  operational.
+
+\bibitem[WZ10]{wang2010settlement}
+\textsc{Wang Y., Zhou W.}:
+\newblock Settlement information management system of beijing-shanghai
+  high-speed railway based on google map service.
+\newblock In \emph{Geoscience and Remote Sensing Symposium (IGARSS), 2010 IEEE
+  International} (2010), IEEE, pp.~2326--2329.
+
+\bibitem[XC04]{xu2004stylized}
+\textsc{Xu H., Chen B.}:
+\newblock Stylized rendering of 3d scanned real world environments.
+\newblock In \emph{Proceedings of the 3rd international symposium on
+  Non-photorealistic animation and rendering} (2004), ACM, pp.~25--34.
+
+\bibitem[ZLC{\etalchar{*}}10]{zhang2010land}
+\textsc{Zhang H., Li M., Chen Z., Bao Z., Huang Q., Cai D.}:
+\newblock Land use information release system based on google maps api and xml.
+\newblock In \emph{Geoinformatics, 2010 18th International Conference on}
+  (2010), IEEE, pp.~1--4.
+
+\end{thebibliography}
