@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+    <li class=""><a href="{{ url_for('index') }}">Accessibility</a></li>
+    <li class=""><a href="{{ url_for('travel') }}">Travel Time</a></li>
+    <li class="active"><a href="{{ url_for('combined') }}">Combined</a></li>
+    <li class=""><a href="{{ url_for('about') }}">About</a></li>
+</ul>
+{% endblock %}
+
+{% block menu %}
+{{ super() }}
+{% endblock %}
+
+{% block main %}
+        <div class="combined row">
+            <div class="col-md-6">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="map2"></div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block js %}
+<!-- custom js -->
+<script src="{{ url_for('static', filename='js/combined.js') }}"></script>
+{% endblock %}
