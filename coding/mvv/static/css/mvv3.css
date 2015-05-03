@@ -1,0 +1,384 @@
+/* reset */
+
+html,
+body,
+address,
+blockquote,
+del,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+ins,
+noscript,
+p,
+pre,
+dl,
+dt,
+dd,
+li,
+ol,
+ul,
+table,
+caption,
+colgroup,
+col,
+thead,
+tfoot,
+tbody,
+tr,
+td,
+th,
+form,
+button,
+fieldset,
+legend,
+label,
+select,
+optgroup,
+option,
+textarea,
+a,
+bdo,
+br,
+img,
+map,
+area,
+object,
+param,
+q,
+script,
+span,
+sub,
+sup,
+abbr,
+acronym,
+cite,
+code,
+del,
+dfn,
+em,
+ins,
+kbd,
+samp,
+strong,
+var,
+b,
+big,
+i,
+small,
+tt {
+    border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+th {
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+}
+/* global */
+
+body {
+    background: #fafafa;
+    font-size: 1em;
+    font-family: 'Oxygen', sans-serif;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+h2 {
+    font-size: 1.25em;
+    font-weight: 700;
+}
+
+p {
+    font-size: .875em;
+    margin: 0 0 15px 0;
+}
+
+hr {
+    border-top: 1px solid #555;
+    margin: 20px 0;
+}
+
+/* legend */
+
+#legend {
+    background: #eee;
+    color: #666;
+    float: right;
+    position: fixed;
+    right: 22%;
+    width: 200px;
+    top: 60px;
+    padding: 10px;
+    line-height: 1.25;
+}
+
+#legend h3 {
+    font-size: .75em;
+    font-weight: 700;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+#legend hr {
+    border-top: 1px dotted #ccc;
+    margin: 20px 0;
+}
+
+#legend li {
+    font-size: .75em;
+    margin: 0 0 5px 0;
+    overflow: hidden;
+}
+
+#legend li svg {
+    display: block;
+    float: left;
+    margin: 0 5px 0 0;
+}
+
+#legend li span {
+    float: left;
+    margin: 2px 0 0 0;
+}
+
+#legend li span.c-01 {
+    width: 85px;
+}
+
+#legend li span.c-02 {
+    text-align: right;
+    width: 85px;
+}
+
+/* container */
+#container {
+    background-color: #333;
+    height: 100%;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    width: 20%;
+    overflow: scroll;
+    z-index: 2;
+}
+
+#container #header {
+    background-color: #222;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.1;
+    padding: 10px 18px 15px 18px;
+    text-align: center;
+}
+
+#content p {
+    margin: 15px;
+    text-align: center;
+}
+
+#content button {
+    color: #fff;
+    width: 100px;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+#content .active {
+  outline: 5px auto #fff;
+  outline-offset: -2px;
+}
+
+/* zoom buttons */
+
+#zoom {
+    overflow: hidden;
+    position: fixed;
+    bottom: 50px;
+    right: 21%;
+    width: 40px;
+}
+
+#zoom-in,
+#zoom-out {
+    clear: both;
+    display: block;
+    height: 40px;
+    padding: 5px;
+    -webkit-transition: all .1s ease-in;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    width: 40px;
+}
+
+#zoom-in:active,
+#zoom-out:active {
+    opacity: .8;
+}
+
+/* content */
+
+.bar {
+    background: red;
+    display: inline-block;
+    float: left;
+    margin: 0 2px 0 0;
+    width: 10px;
+}
+
+text {
+    color: black;
+    display: block;
+    font-size: 12px;
+}
+
+.axis path,
+.axis line {zoom
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 11px;
+}
+
+.line {
+    display: block;
+    opacity: .3;
+    stroke: #2C7BC9;
+    stroke-width: 2px;
+}
+
+.city-limit {
+    fill: none;
+    stroke: #aaa;
+    stroke-width: 1.5px;
+    stroke-dasharray: 1, 5;
+}
+
+.stop {
+    cursor: pointer;
+    display: block;
+    /* fill:#ED3A2D;  */
+
+    opacity: .5;
+    stroke: blue;
+    stroke-width: 0;
+}
+
+#viz {
+    left: 0;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+
+#info {
+    background: #fff;
+    border-top: 5px solid #222;
+    border-bottom: 1px solid #222;
+    color: #222;
+    display: none;
+    font-size: .875em;
+    padding: 10px 15px 5px 15px;
+    position: absolute;
+    width: 200px;
+    z-index: 99;
+}
+
+#info p {
+    font-size: 1em;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+#info span {
+    font-size: .875em;
+    text-transform: uppercase;
+}
+
+#info span.poverty {
+    font-size: 1em;
+    color: #7CAD34;
+    font-weight: bold;
+    text-transform: none;
+}
+
+#info .race {
+    font-size: .875em;
+    margin: 0 0 10px 0;
+}
+
+#info .race span {
+    font-size: 1em;
+    color: #D18706;
+    font-weight: bold;
+    text-transform: none;
+}
+
+/* misc */
+
+small {
+    font-size: .75em;
+    line-height: 1.5;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+.cb {
+    clear: both;
+}

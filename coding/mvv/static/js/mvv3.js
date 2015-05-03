@@ -1,978 +1,268 @@
-$(window).resize(function () {
-    var h = $(window).height(),
-      offsetTop = 50; // Calculate the top offset
+$(window).resize(function() {
+    $("#viz svg").css('width', $(window).width());
+    $("#viz svg").css('height', $(window).height());
+});
 
-    $('#map').css('height', (h - offsetTop));
-    $('#map2').css('height', (h - offsetTop));
-}).resize();
-
-(function(){
-    //var cached_layers = {};
-    var cached_json = {};
-    var cache_index;
-    var cached_jenks = {};
-    var metro_layer;
-    var chicago_layer;
-    var metro_layer_2;
-    var chicago_layer_2;
-    var has_metro_layer = false;
-    var has_chicago_layer = false;
-    var jenks_cutoffs;
-    var layer;
-    var category_iso;
-    var cta_layer = new L.FeatureGroup();
-    var cta_line_names = ["blue", "brown", "green", "orange", "pink", "purple", "red", "yellow", "metra"];
-
-    var val = [];
-
-    var my_layer = null;
-
-    var total_jobs = {};
-    total_jobs['C000'] = 3899528;
-    total_jobs['CA01'] = 871198;
-    total_jobs['CA02'] = 2249836;
-    total_jobs['CA03'] = 778494;
-    total_jobs['CE01'] = 896012;
-    total_jobs['CE02'] = 1277261;
-    total_jobs['CE03'] = 1726255;
-    total_jobs['CNS01'] = 2717;
-    total_jobs['CNS02'] = 1292;
-    total_jobs['CNS03'] = 15784;
-    total_jobs['CNS04'] = 117228;
-    total_jobs['CNS05'] = 371876;
-    total_jobs['CNS06'] = 223940;
-    total_jobs['CNS07'] = 419238;
-    total_jobs['CNS08'] = 169656;
-    total_jobs['CNS09'] = 87951;
-    total_jobs['CNS10'] = 220226;
-    total_jobs['CNS11'] = 57577;
-    total_jobs['CNS12'] = 298923;
-    total_jobs['CNS13'] = 77490;
-    total_jobs['CNS14'] = 297369;
-    total_jobs['CNS15'] = 379818;
-    total_jobs['CNS16'] = 498555;
-    total_jobs['CNS17'] = 77582;
-    total_jobs['CNS18'] = 300148;
-    total_jobs['CNS19'] = 146863;
-    total_jobs['CNS20'] = 135295;
-    total_jobs['CR01'] = 3039123;
-    total_jobs['CR02'] = 539251;
-    total_jobs['CR03'] = 16233;
-    total_jobs['CR04'] = 255263;
-    total_jobs['CR05'] = 4774;
-    total_jobs['CR07'] = 44884;
-    total_jobs['CT01'] = 3323788;
-    total_jobs['CT02'] = 575740;
-    total_jobs['CD01'] = 351201;
-    total_jobs['CD02'] = 687096;
-    total_jobs['CD03'] = 910699;
-    total_jobs['CD04'] = 1079334;
-    total_jobs['CS01'] = 1936191;
-    total_jobs['CS02'] = 1963337;
-
-    var total_landuse = {};
-    total_landuse['park_area'] = 11.983198780000007;
-    total_landuse['library'] = 78;
-    total_landuse['fire_sta'] = 92;
-    total_landuse['school'] = 988;
-    total_landuse['hospital'] = 44;
-    total_landuse['pri_sch'] = 355;
-    total_landuse['pub_sch'] = 633;
-    total_landuse['grocery'] = 506;
-    total_landuse['park_count'] = 580;
-
-    var cur_num_metro;
-    var cur_num_chicago;
-
-    var iso_cutoff = [600, 1200, 1800, 2700, 3600, 4500, 5400, 6300, 7200];
-
-    var map = L.map('map', {center: [41.8910,-87.8839], zoom: 10, minZoom: 8, zoomControl: false, attributionControl: false});
-    var map2 = L.map('map2', {center: [41.8910,-87.8839], zoom: 10, minZoom: 8, zoomControl: false});
-
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/joysword.i6b4jale/{z}/{x}/{y}.png').addTo(map);
-
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/joysword.i6b4jale/{z}/{x}/{y}.png', {
-        attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> | <a href='http://utc.webhost.uic.edu/metsi/' target='_blank'>&copy; Metropolitan Transportation Support Initiative<a/>"
-    }).addTo(map2);
-
-    L.control.scale({position: 'bottomright'}).addTo(map2);
-
-    L.control.zoom({position: 'topright'}).addTo(map2);
-
-    map.on('drag', function(e) {
-        map2.setView(map.getCenter());
-    });
-
-    map2.on('drag', function(e) {
-        map.setView(map2.getCenter());
-    });
-
-    map.on('zoomend', style_change);
-    map2.on('zoomend', function(e) {
-        map.setZoom(map2.getZoom());
-    });
-
-
-    function style_change() {
-        map2.setZoom(map.getZoom());
-
-        if (!(has_metro_layer || has_chicago_layer)) {
-            return;
-        }
-        console.log('zoom:', map.getZoom());
-        if (map.getZoom() <= 10) {
-            console.log('<=10');
-            my_layer.setStyle(function(feature) {
-                var new_color = get_color(100*cached_json[cache_index][feature.properties.num]);
-                return {
-                    color: new_color,
-                    opacity: 0.4,
-                    weight: 1.5,
-                }
-            });
-            console.log('changed to: new_color, 1.5')
-        }
-        else {
-            console.log('>10');
-            my_layer.setStyle(function(feature) {
-                var new_color = get_color(100*cached_json[cache_index][feature.properties.num]);
-                return {
-                    color: '#fff',
-                    weight: 1,
-                    opacity: 1,
-                }
-            });
-            console.log('changed to: #fff, 1')
-        }
+// loader deals with async issue
+var loader = {
+    queue: [],
+    push: function(fn, scope, params) {
+        this.queue.push(function(){ fn.apply(scope||window, params||[]); });
+    },
+    run: function() {
+        if (this.queue.length) this.queue.shift().call();
     }
+};
 
-    load_lines();
-    show_lines();
+// BOGUS delay data
+    // stop id: # of stop points & avg delay
+    // delay: [0.15 - 1.48]
+var stopsData = {"530": [3537, 2.22],"1120": [1688, 9.27],"270": [1592, 5.70],"760": [1558, 5.20],"880": [1739, 9.27],"1210": [1446, 5.57],"1220": [1723, 2.65],"140": [1212, 10.92],"50": [1492, 5.87],"690": [2660, 2.98],"370": [3248, 3.28],"710": [1474, 3.98],"1480": [1303, 2.05],"870": [124, 2.28],"1440": [134, 1.13],"1310": [2155, 2.80],"90": [2807, 1.42],"1500": [441, 0.47],"160": [2360, 3.93],"640": [1272, 4.68],"200": [1246, 1.13],"260": [482, 10.95],"1660": [1464, 3.12],"1490": [1578, 2.95],"230": [1448, 2.80],"1350": [1566, 2.38],"1260": [3377, 5.25],"170": [1316, 6.82],"1160": [344, 3.80],"490": [1644, 3.45],"1410": [1647, 1.73],"590": [1286, 7.47],"570": [619, 3.50],"60": [641, 0.15],"1330": [2741, 1.58],"1280": [50, 2.55],"1430": [55, 7.45],"240": [1277, 1.72],"1230": [1912, 4.40],"190": [1744, 3.93],"720": [1743, 5.28],"1140": [319, 5.22],"940": [2766, 3.32],"290": [2805, 3.80],"1080": [2793, 4.93],"410": [1899, 4.72],"890": [1430, 3.22],"770": [3334, 3.30],"1320": [693, 3.27],"650": [1354, 0.52],"1300": [3298, 3.43],"400": [2958, 2.85],"900": [1511, 2.43],"340": [590, 1.43],"1070": [2531, 6.42],"100": [2628, 6.17],"1450": [840, 4.90],"330": [2514, 5.98],"800": [1990, 4.97],"1010": [984, 3.43],"920": [1389, 5.70],"180": [3142, 3.65],"980": [23, -0.40],"960": [884, 4.77],"250": [709, 11.02],"390": [34, 10.98],"1090": [642, 3.93],"750": [2324, 0.93],"610": [852, 2.22],"700": [919, 0.92],"1360": [800, 0.45],"670": [939, 7.55],"1240": [5681, 1.63],"510": [313, 3.27],"310": [1232, 0.27],"120": [1370, 8.33],"1030": [683, 2.05],"440": [1038, 1.15],"1040": [1874, 1.00],"580": [904, 2.07],"350": [2473, 2.25],"430": [1009, 8.72],"1340": [1427, 2.20],"540": [954, 4.87],"660": [1004, 1.27],"280": [2965, 3.12],"30": [1581, 2.63],"1250": [1363, 3.08],"520": [331, 2.72],"1670": [136, 2.32],"80": [940, 3.72],"1420": [48, 3.32],"380": [1885, 1.17],"70": [340, 3.85],"630": [534, 11.05],"1050": [430, -1.23],"840": [1341, 6.35],"1190": [2547, 2.45],"1380": [1315, 2.50],"460": [2011, 3.30],"730": [1947, 3.17],"360": [1259, 1.62],"680": [347, 3.72],"560": [2473, 6.90],"820": [65, 2.38],"20": [23, 0.57],"320": [3548, 3.18],"450": [1357, 2.65],"910": [994, 2.18],"1170": [1646, 11.15],"1400": [394, 1.13],"1270": [310, 2.95],"300": [3405, 7.13],"550": [1907, 6.98],"480": [338, 4.93],"790": [125, 3.95],"40": [924, 8.28],"1200": [734, 1.57],"1290": [3554, 3.70],"1180": [1172, 3.88],"1460": [2527, 4.32],"470": [942, 3.28],"810": [2473, 4.67],"220": [857, 2.15],"10": [691, 3.43],"970": [1478, 4.57],"850": [801, 3.70],"1020": [56, 3.18],"990": [3249, 2.27],"130": [850, 2.97],"930": [1006, 1.53],"1150": [1355, 7.20],"1060": [904, 2.20],"1130": [870, 1.88],"830": [2002, 4.40],"210": [1938, 3.18],"740": [290, 0.33],"780": [3351, 7.75],"150": [2112, 3.28],"600": [1235, 3.10],"420": [688, 2.63],"1000": [1043, 11.48],"1680": [802, 3.20],"1510": [1418, 2.33],"1690": [2117, 1.82]};
 
-    var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function(map) {
-        var div = L.DomUtil.create('div', 'legend');
-        var labels = [];
-        var low;
-        var high;
-        $.each(cached_jenks[cache_index], function(i, v) {
-            low = v;
-            high = cached_jenks[cache_index][i+1];
-            labels.push('<i style="background:' + get_color(low) + '"></i>' +
-                low.toFixed(2) + '%' + (high ? '&ndash;' + high.toFixed(2) + '%': '+'));
+$(document).ready(function() {
+    // initialize popup
+    $("#viz").on("mousemove", function(e) {
+        var x = e.pageX + 20;
+        var y = e.pageY;
+        if (y > ($(window).height() - 100)) {
+            var y = e.pageY - 100;
+        } else {
+            var y = e.pageY - 20;
+        }
+
+        $("#info").css({
+            "left": x,
+            "top": y
         });
-        div.innerHTML = '<div><strong>' + 'Legend' + '</strong><br />' + labels.join('<br />') + '</div>';
-        return div;
-    }
-
-    var legend_iso = L.control({position: 'bottomleft'});
-    legend_iso.onAdd = function(map) {
-        var div = L.DomUtil.create('div', 'legend');
-        var labels = [];
-        var low;
-        var high;
-        $.each(iso_cutoff, function(i, v) {
-            low = (i==0)?0:(iso_cutoff[i-1]);
-            high = v;
-            labels.push('<i style="background:' + get_iso_color(high) + '"></i>' +
-            high/60 + ' min');
-        });
-        labels.push('<i style="background:' + get_iso_color(iso_cutoff[iso_cutoff.length-1]+1000) + '"></i>' + iso_cutoff[iso_cutoff.length-1]/60 + ' min+');
-        div.innerHTML = '<div><strong>' + 'Travel Time:' + '</strong><br />' + labels.join('<br />') + '</div>';
-        return div;
-    }
-
-    legend_iso.addTo(map2);
-
-    // which accessibility? job, or other land uses?
-    $('#select-acc').change(function(){
-        switch (this.value) {
-            case "job":
-                // show filter and categories
-                $('#form-filter').removeClass('no-disp');
-                $('#form-category').removeClass('no-disp');
-                break;
-            default:
-                // hide filter and categories
-                $('#form-filter').addClass('no-disp');
-                $('#form-category').addClass('no-disp');
-                break;
-        }
-    })
-
-    // which type? auto, transit, bicycle or walk?
-    $('#select-type').change(function(){
-        switch (this.value) {
-            case "transit":
-                $('#form-time').removeClass('no-disp');
-                break;
-            default:
-                $('#form-time').addClass('no-disp');
-                break;
-        }
     });
 
-    // which filter to show?
-    // age, earning, industry, race, ethnicity, education or gender
-    $('#select-filter').change(function(){
-        switch (this.value) {
-            case "fi_age":
-                $('#form-age').attr('class', '');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_earning":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', '');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_industry":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', '');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_race":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', '');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_ethnicity":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', '');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_education":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', '');
-                $('#form-gender').attr('class', 'no-disp');
-                break;
-            case "fi_gender":
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', '');
-                break;
-            default:
-                $('#form-age').attr('class', 'no-disp');
-                $('#form-earning').attr('class', 'no-disp');
-                $('#form-industry').attr('class', 'no-disp');
-                $('#form-race').attr('class', 'no-disp');
-                $('#form-ethnicity').attr('class', 'no-disp');
-                $('#form-education').attr('class', 'no-disp');
-                $('#form-gender').attr('class', 'no-disp');
+    // initialize toggle
+    $(".toggle-lines").on("click", function() {
+        var line = $(this).attr("id").replace("toggle-","");
+        var lines = $("path[lines*=" + line + "]");
+        if ($(this).hasClass("active")) {
+            lines.css({
+                "stroke-width": "2px"
+            });
+            lines.animate({
+                opacity: .1
+            }, 100);
+            $(this).removeClass("active");
+        } else {
+            lines.css({
+                "stroke-width": "4px"
+            });
+            lines.animate({
+                opacity: 0.8
+            }, 100);
+            $(this).addClass("active");
         }
+        return false;
     });
 
-    $('#checkbox-cta').change(function(){
-        if ($('#checkbox-cta').is(':checked')) {
-            map.addLayer(cta_layer);
-            map2.addLayer(cta_layer);
-        }
-        else {
-            map.removeLayer(cta_layer);
-            map2.removeLayer(cta_layer);
-        }
+    // clean viz div
+    $("#viz").html("");
+
+    // set variables
+    var lonlat = [-87.64,41.88];
+    var width = $(window).width();
+    var height = $(window).height();
+    var center = {
+        x: width/2,
+        y: height/2
+    };
+
+    // d3 geo
+    var projection = d3.geo.mercator()
+        .center(lonlat)
+        .scale(117000)
+        .translate([width/2, height/2]);
+    var path = d3.geo.path()
+        .projection(projection);
+    var colorScaleDelay = d3.scale.linear()
+        .domain([0.15, 11.48])
+        .range(['#ED3A2D', '#2e0101']);
+    var sizeScaleFrequency = d3.scale.linear()
+        .domain([1,6000])
+        .range([1,40]);
+    var stopR = function(d, i) {
+        var delay = stopsData[d.properties.STATION_ID];
+        if (delay) {
+            return sizeScaleFrequency(delay[0]);
+        };
+    };
+    var fillDelay = function(d,i) {
+        var delay = stopsData[d.properties.STATION_ID];
+        if (delay) {
+            return colorScaleDelay(delay[1]);
+        };
+    };
+    var zoom = d3.behavior.zoom()
+        .translate(projection.translate())
+        .scale(projection.scale())
+        .scaleExtent([75000,360000])
+        .on("zoom", function() {
+            console.log('in zoom');
+            projection.translate(d3.event.translate).scale(d3.event.scale);
+            group.selectAll("path").attr("d", path);
+            group.selectAll("circle.stop").attr("cx", function(d) {
+                return projection(d.geometry.coordinates)[0]
+            });
+            group.selectAll("circle.stop").attr("cy", function(d) {
+                return projection(d.geometry.coordinates)[1]
+            });
     });
 
-    $('#btn-submit').on('click', show_map);
-    $('#btn-submit').on('click', show_map2);
-
-    // called when the button is clicked
-    function show_map(e) {
-        console.log('in show_map()');
-        var landuse = $('#select-acc').val();
-        var type =  $('#select-type').val();
-        var time =  $('#select-time').val();
-        var threshold =  $('#select-threshold').val();
-        var filter =  $('#select-filter').val();
-        var age =  $('#select-age').val();
-        var earning =  $('#select-earning').val();
-        var industry =  $('#select-industry').val();
-        var race =  $('#select-race').val();
-        var ethnicity =  $('#select-ethnicity').val();
-        var education =  $('#select-education').val();
-        var gender =  $('#select-gender').val();
-        var category = null;
-
-        $('#map').spin({lines: 12, length: 0, width: 8, radius: 12});
-
-        // check whether a class is specified for each category
-        switch (filter) {
-            case 'fi_age':
-                if (age == null) {
-                    $('#select-age').focus();
-                    return
-                }
-                category = age;
-                break;
-            case 'fi_earning':
-                if (earning == null) {
-                    $('#select-earning').focus();
-                    return
-                }
-                category = earning;
-                break;
-            case 'fi_industry':
-                if (industry == null) {
-                    $('#select-industry').focus();
-                    return
-                }
-                category = industry;
-                break;
-            case 'fi_race':
-                if (race == null) {
-                    $('#select-race').focus();
-                    return
-                }
-                category = race;
-                break;
-            case 'fi_ethnicity':
-                if (ethnicity == null) {
-                    $('#select-ethnicity').focus();
-                    return
-                }
-                category = ethnicity;
-                break;
-            case 'fi_education':
-                if (education == null) {
-                    $('#select-education').focus();
-                    return
-                }
-                category = education;
-                break;
-            case 'fi_gender':
-                if (gender == null) {
-                    $('#select-gender').focus();
-                    return
-                }
-                category = gender;
-                break;
-            default:
-                category = "C000"
-        }
-
-        var filename = 'static/json/';
-
-        // get the geometry if not done
-        if (landuse != "job") {
-            filename += 'acc_chicago_' + type + '/';
-            if (type == 'transit') {
-                filename += time + '/';
-            }
-            filename += threshold + '/' + landuse + '.json';
-            cache_index = filename;
-            console.log('cach_index:', cache_index);
-            if (!has_chicago_layer) {
-                console.log('no chicago layer, downloading');
-                var which_feature = 0;
-                $.getJSON($SCRIPT_ROOT + '/static/json/chicago.topojson', function(data) {
-                    chicago_layer = L.geoJson(topojson.feature(data, data.objects['BlockGroupsTIGER2010']), {
-                        onEachFeature: function(feature, layer) {
-                            feature.properties.num = which_feature;
-                            which_feature++;
-                        }
-                    });
-                    has_chicago_layer = true;
-                    console.log('got chicago layer');
-                    my_layer = chicago_layer;
-                    get_attributes(landuse, category);
-                });
-            }
-            else {
-                my_layer = chicago_layer;
-                get_attributes(landuse, category);
-            }
-        }
-        else {
-            filename += 'acc_large_' + type + '/';
-            if (type == 'transit') {
-                filename += time + '/';
-            }
-            filename += threshold + '/' + category + '.json';
-            cache_index = filename;
-            console.log('cach_index:', cache_index);
-            if (!has_metro_layer) {
-                console.log('no metropolitan layer, downloading');
-                var which_feature = 0;
-                $.getJSON($SCRIPT_ROOT + '/static/json/metro.topojson', function(data) {
-                    metro_layer = L.geoJson(topojson.feature(data, data.objects['metro_nad83']), {
-                        onEachFeature: function(feature, layer) {
-                            feature.properties.num = which_feature;
-                            which_feature++;
-                        }
-                    });
-                    has_metro_layer = true;
-                    console.log('got metropolitan layer');
-                    my_layer = metro_layer;
-                    get_attributes(landuse, category);
-                });
-            }
-            else {
-                my_layer = metro_layer;
-                get_attributes(landuse, category);
-            }
-
-        }
-    }
-
-    function get_attributes(landuse, category) {
-        console.log('in get_attributes()');
-        if (cached_json[cache_index] == undefined) {
-            console.log('nothing cached');
-            time_start = Date.now();
-            console.log(Date(time_start));
-
-            console.log('cache_index:', cache_index);
-
-            $.getJSON($SCRIPT_ROOT + '/' + cache_index, function(data) {
-
-                // block 1
-                cached_json[cache_index] = data;
-
-                console.log('got data');
-                time_1_2 = Date.now();
-                console.log(Date(time_1_2));
-                console.log(time_1_2 - time_start);
-                // end block 1
-
-                // block 2
-                val = [];
-                for (var i in data) {
-                    if (data[i]>=0) {
-                        val.push(100*data[i]);
-                    }
-                }
-                jenks_cutoffs = jenks(val, 7);
-                console.log('jenks:', jenks_cutoffs);
-                jenks_cutoffs[0] = 0;
-                jenks_cutoffs.pop(); // don't need to know what is the largest
-                cached_jenks[cache_index] = jenks_cutoffs;
-                console.log(jenks_cutoffs);
-
-                render_layer(landuse, category, time_1_2);
-            });
-        }
-        else {
-            console.log('already has this json file');
-            time_1_2 = Date.now();
-            console.log(Date(time_1_2));
-            render_layer(landuse, category, time_1_2);
-        }
-    }
-
-    function render_layer(landuse, category, time_1_2) {
-
-        console.log('in render_layer()');
-        console.log('cache_index:', cache_index);
-
-        var data = cached_json[cache_index];
-
-        for (var i in my_layer._layers) {
-        //my_layer.eachLayer(function(bg){
-            var bg = my_layer._layers[i];
-            var num = bg.feature.properties.num;
-            var content = 'GEOID10: ' + bg.feature.properties.GEOID10;
-            if (landuse=="job") {
-                if (_.has(data, num)) {
-                    bg.setStyle(acc_style(data[num]));
-                    content += '<br>Accessibility: ' + (100*data[num]).toFixed(1) + '%<br>Total jobs: ' + total_jobs[category];
-                }
-                else {
-                    bg.setStyle(acc_style(0));
-                    content += '<br>Accessibility: N/A<br>Total jobs: ' + total_jobs[category];
-                }
-            }
-            else {
-                if (_.has(data, num)) {
-                    bg.setStyle(acc_style(data[num]));
-                    content += '<br>Accessibility: ' + (100*data[num]).toFixed(1) + '%<br>Total number: ' + ((landuse=='park_area')?total_landuse[landuse].toFixed(2):total_landuse[landuse]);
-                }
-                else {
-                    bg.setStyle(acc_style(0));
-                    content += '<br>Accessibility: N/A<br>Total number: ' + ((landuse == 'park_area')?total_landuse[landuse].toFixed(2):total_landuse[landuse]);
-                }
-            }
-            bg.bindLabel(content);
-        }
-
-        console.log('calculation done');
-        time_2_3 = Date.now();
-        console.log(Date(time_2_3));
-        console.log(time_2_3 - time_1_2);
-        // end block 2
-
-        $('#map').spin(false);
-
-        // block 3
-        try {
-            legend.removeFrom(map);
-        } catch(e) {};
-        //acc_layer.clearLayers();
-        // if (acc_layer != undefined) {
-        //     map.removeLayer(acc_layer);
-        // }
-
-        if (landuse=="job") {
-            try {
-                map.removeLayer(chicago_layer);
-            } catch(e) {};
-            metro_layer.addTo(map);
-        }
-        else {
-            try {
-                map.removeLayer(metro_layer);
-            } catch(e) {};
-            chicago_layer.addTo(map);
-        }
-        //acc_layer.addLayer(my_layer).addTo(map);
-
-        legend.addTo(map);
-
-        // bing up CTA/Metra layers to top
-        if ($('#checkbox-cta').is(':checked')) {
-            cta_layer.bringToFront();
-        }
-
-        //map.fitBounds(acc_layer.getBounds());
-
-        console.log('adding layer done');
-        time_done = Date.now();
-        console.log(Date(time_done));
-        console.log(time_done - time_2_3);
-        // end block 3
-    }
-
-    function show_map2(e) {
-        console.log('in show_map2()');
-        layer = ($('#select-acc').val()=='job')?'metro':'chicago';
-        var type =  $('#select-type').val();
-        var time =  $('#select-time').val();
-
-        var filename = 'static/json/' + layer + '.topojson';
-
-        {
-
-            if (layer=="metro") {
-                if (typeof metro_layer_2 != 'undefined') {
-                    if (map2.hasLayer(chicago_layer_2)) {
-                        map2.removeLayer(chicago_layer_2);
-                    }
-                    if (!map2.hasLayer(metro_layer_2)) {
-                        map2.addLayer(metro_layer_2);
-                    }
-                    if (typeof cur_num_metro != 'undefined') {
-                        select_bg(cur_num_metro, false);
-                    }
-                    return;
-                }
-            }
-            else {
-                if (typeof chicago_layer_2 != 'undefined') {
-                    if (map2.hasLayer(metro_layer_2)) {
-                        map2.removeLayer(metro_layer_2);
-                    }
-                    if (!map2.hasLayer(chicago_layer_2)) {
-                        map2.addLayer(chicago_layer_2);
-                    }
-                    if (typeof cur_num_chicago != 'undefined') {
-                        select_bg(cur_num_chicago, true);
-                    }
-                    return;
-                }
-            }
-
-            $('#map2').spin({lines: 12, length: 0, width: 8, radius: 12});
-
-            $.getJSON($SCRIPT_ROOT + '/' + filename, function(data) {
-
-                // block 1
-                console.log('got data');
-                // end block 1
-
-                // block 2
-                if (layer == 'metro') {
-                    var which_feature = 0;
-                    metro_layer_2 = L.geoJson(topojson.feature(data, data.objects['metro_nad83']), {
-                        style: empty_style,
-                        //filter: acc_filter,
-                        onEachFeature: function(feature, layer) {
-                            feature.properties.num = which_feature;
-                            var content ='GEOID10: ' + feature.properties.GEOID10;
-                            layer.bindLabel(content);
-                            layer.on('click', clickHandler_metro);
-                            which_feature++;
-                        }
-                    });
-                    console.log('which_feature:');
-                    console.log(which_feature);
-                    console.log(metro_layer_2);
-                }
-                else {
-                    var which_feature = 0;
-                    // cached_layers[cache_index] = L.geoJson(my_data.features, {
-                    chicago_layer_2 = L.geoJson(topojson.feature(data, data.objects['BlockGroupsTIGER2010']), {
-                        style: empty_style,
-                        //filter: acc_filter,
-                        onEachFeature: function(feature, layer) {
-                            feature.properties.num = which_feature;
-                            var content ='GEOID10: ' + feature.properties.GEOID10;
-                            layer.bindLabel(content);
-                            layer.on('click', clickHandler_chicago);
-                            which_feature++;
-                        }
-                    });
-                    console.log('which_feature:');
-                    console.log(which_feature);
-                    console.log(chicago_layer_2);
-                }
-
-                console.log('calculation done');
-                // end block 2
-
-                $('#map2').spin(false);
-
-                // block 3
-                if (layer=='metro') {
-                    if (map2.hasLayer(chicago_layer_2)) {
-                        map2.removeLayer(chicago_layer_2);
-                    }
-                    if (!map2.hasLayer(metro_layer_2)) {
-                        map2.addLayer(metro_layer_2);
-                    }
-                }
-                else {
-                    if (map2.hasLayer(metro_layer_2)) {
-                        map2.removeLayer(metro_layer_2);
-                    }
-                    if (!map2.hasLayer(chicago_layer_2)) {
-                        map2.addLayer(chicago_layer_2);
-                    }
-                }
-
-                // bing up CTA/Metra layers to top
-                if ($('#checkbox-cta').is(':checked')) {
-                    cta_layer.bringToFront();
-                }
-
-                //map.fitBounds(acc_layer.getBounds());
-
-                console.log('adding layer done');
-                // end block 3
-
-            });
-        }
-    }
-
-    function clickHandler_chicago(e){
-        console.log('in clickHandler_chicago()');
-        cur_num_chicago = e.target.feature.properties.num;
-        e.target._hideLabel();
-        console.log('clicked feature id:', cur_num_chicago);
-        select_bg(cur_num_chicago, true, e);
-    }
-
-    function clickHandler_metro(e){
-        console.log('in clickHandler_metro()');
-        cur_num_metro = e.target.feature.properties.num;
-        e.target._hideLabel();
-        console.log('clicked feature id:', cur_num_metro);
-        select_bg(cur_num_metro, false, e);
-    }
-
-    function select_bg(num, isChicago, e){
-
-        console.log('in select_bg()');
-
-        console.log('bg:', num);
-
-        var file_prefix = "/static/json/iso_"
-        var travel_type = $('#select-type').val();
-
-        if (travel_type == 'transit') {
-            travel_type += '/' + $('#select-time').val();
-        }
-
-        if (isChicago) {
-            $.getJSON($SCRIPT_ROOT + file_prefix + "chicago_" + travel_type + "/" + num + '.json', function(data){
-                $.each(chicago_layer_2._layers, function(i, bg){
-                    var num = bg.feature.properties.num;
-                    var content = 'GEOID10: ' + bg.feature.properties.GEOID10;
-                    if (_.has(data, num))
-                    {
-                        bg.setStyle({
-                            fill: true,
-                            fillColor: get_iso_color(data[num]),
-                        });
-                        content += '<br>Travel Time: ' + toTime(data[num]);
-                    }
-                    else
-                    {
-                        bg.setStyle({
-                            fillOpacity: 0,
-                            stroke: false
-                        });
-                    }
-                    bg.bindLabel(content);
-                });
-                if (typeof e !== 'undefined') {
-                    e.target._showLabel(e);
-                }
-            });
-        }
-        else {
-            $.getJSON($SCRIPT_ROOT + file_prefix + "large_" + travel_type + "/" + num + '.json', function(data){
-                $.each(metro_layer_2._layers, function(i, bg){
-                    var num = bg.feature.properties.num;
-                    var content = 'GEOID10: ' + bg.feature.properties.GEOID10;
-                    if (_.has(data, num))
-                    {
-                        bg.setStyle({
-                            fill: true,
-                            fillColor: get_iso_color(data[num]),
-                        });
-                        content += '<br>Travel Time: ' + toTime(data[num]);
-                    }
-                    else
-                    {
-                        bg.setStyle({
-                            fillOpacity: 0,
-                            stroke: false
-                        });
-                    }
-                    bg.bindLabel(content);
-                });
-                if (typeof e !== 'undefined') {
-                    e.target._showLabel(e);
-                }
-            });
-        }
-    }
-
-    function toTime(sec) {
-        return Math.floor(sec/60) + ' min';
-    }
-
-    var map_colors1 = [
-        '#deebf7',
-        '#c6dbef',
-        '#9ecae1',
-        '#6baed6',
-        '#4292c6',
-        '#2171b5',
-        '#084594'
-    ]
-
-    var map_colors = [
-        '#f7fcf5',
-        '#e5f5e0',
-        '#c7e9c0',
-        '#a1d99b',
-        '#74c476',
-        '#41ab5d',
-        '#238b45',
-        '#005a32'
-    ]
-
-    function get_color(d) {
-        if (d > cached_jenks[cache_index][3]) {
-            if (d > cached_jenks[cache_index][5]) {
-                if (d > cached_jenks[cache_index][6]) {
-                    return map_colors[7];
-                }
-                else {
-                    return map_colors[6];
-                }
-            }
-            else {
-                if (d > cached_jenks[cache_index][4]) {
-                    return map_colors[5];
-                }
-                else {
-                    return map_colors[4];
-                }
-            }
-        }
-        else {
-            if (d > cached_jenks[cache_index][1]) {
-                if (d > cached_jenks[cache_index][2]) {
-                    return map_colors[3];
-                }
-                else {
-                    return map_colors[2];
-                }
-            }
-            else {
-                if (d > cached_jenks[cache_index][0]) {
-                    return map_colors[1];
-                }
-                else {
-                    return map_colors[0];
-                }
-            }
-        }
-    }
-
-    function get_iso_color(seconds) {
-        if (seconds <= iso_cutoff[0]) {
-            return '#f46d6c';
-        }
-        else if (seconds <= iso_cutoff[1])
-        {
-            return '#fda36c';
-
-        }
-        else if (seconds <= iso_cutoff[2])
-        {
-            return '#fedc6c';
-
-        }
-        else if (seconds <= iso_cutoff[3])
-        {
-            return '#d4f470';
-
-        }
-        else if (seconds <= iso_cutoff[4])
-        {
-            return '#a7f49a';
-
-        }
-        else if (seconds <= iso_cutoff[5])
-        {
-            return '#85ffe0';
-
-        }
-        else if (seconds <= iso_cutoff[6])
-        {
-            return '#6fcfff';
-
-        }
-        else if (seconds <= iso_cutoff[7])
-        {
-            return '#6d91f3';
-
-        }
-        else if (seconds <= iso_cutoff[8])
-        {
-            return '#6b69e8';
-
-        }
-        return '#7c7dbb';
-    }
-
-    function acc_style(num) {
-        var color = get_color(100*num);
-        if (map.getZoom()<=10) {
-            return {
-                fillColor: color,
-                weight: 1.5,
-                color: color,
-                opacity: 0.5,
-                fillOpacity: 0.7
-            }
-        }
-        else {
-            return {
-                fillColor: color,
-                weight: 1,
-                color: '#fff',
-                opacity: 1,
-                fillOpacity: 0.7
-            }
-        }
-    }
-
-    function empty_style(feature) {
-        return {
-            weight: 1,
-            color: '#fff',
-            fillColor: '#7c7dbb',
-            fillOpacity: 0.5,
-        }
-    }
-
-    function load_lines() {
-        for (var i in cta_line_names) {
-            load_line(cta_line_names[i]);
-        }
-    }
-
-    function load_line(name) {
-        $.getJSON($SCRIPT_ROOT + "/static/json/"+name+".json", function(data) {
-            cta_layer.addLayer(
-                L.geoJson(data.features, {
-                    style: function(feature) {
-                        var final_style = {
-                            weight: 3,
-                            opacity: 0.6
-                        }
-                        switch (name) {
-                            case 'blue':
-                                final_style.color = '#00a1de';
-                                break;
-                            case 'brown':
-                                final_style.color = '#62361b';
-                                break;
-                            case 'green':
-                                final_style.color = '#009b3a';
-                                break;
-                            case 'orange':
-                                final_style.color = '#f9461c';
-                                break;
-                            case 'pink':
-                                final_style.color = '#e27ea6';
-                                break;
-                            case 'purple':
-                                final_style.color = '#522398';
-                                break;
-                            case 'red':
-                                final_style.color = '#c60c30';
-                                break;
-                            case 'yellow':
-                                final_style.color = '#f9e300';
-                                break;
-                            case 'metra':
-                                final_style.color = '#679aaf';
-                                break;
-                        }
-                        return final_style;
+    // initialize viz
+    var group = d3.select("#viz").append("svg").attr("width",width).attr("height",height);
+    group.call(zoom);
+
+    // functions to draw lines and stops
+    var lines = function() {
+        d3.json("static/json/lines.json", function(data) {
+            group.selectAll("path.line")
+                .data(data.features)
+                .enter()
+                .append("path")
+                .classed("line", true)
+                .style("fill", "none")
+                .attr({
+                    d: path,
+                    lines: function(d,i) {
+                        return d.properties.LINES;
                     }
                 })
-            );
+            loader.run();
         });
-    }
+    };
 
-    function show_lines() {
-        if ($('#checkbox-cta').is(':checked')) {
-            map.addLayer(cta_layer);
-            map2.addLayer(cta_layer);
-        }
-    }
+    var stops = function() {
+        d3.json("static/json/stations.json", function(data) {
+            group.selectAll("circle.stop")
+                .data(data.features)
+                .enter()
+                .append("circle")
+                .classed("stop", true)
+                .style("fill", fillDelay)
+                .attr({
+                    r: stopR,
+                    cx: function(d,i) {
+                        return projection(d.geometry.coordinates)[0]
+                    },
+                    cy: function(d,i) {
+                        return projection(d.geometry.coordinates)[1]
+                    },
+                    stopid: function(d,i) {
+                        return d.properties.STATION_ID
+                    },
+                    name: function(d,i) {
+                        return d.properties.LONGNAME
+                    },
+                    lines: function(d,i) {
+                        return d.properties.LINES
+                    },
+                    delay: function(d,i) {
+                        var delay = stopsData[d.properties.STATION_ID];
+                        if (delay) {
+                            if (delay[1] < 0)   {
+                                return 0;
+                            } else if (delay[1] < 1) {
+                                return 1;
+                            } else {
+                                //return Math.sqrt(2*(delay^2));
+                                return delay[1];
+                            }
+                        } else {
+                            return 0;
+                        };
+                    },
+                })
+                .on("mouseover", function(self) {
+                    self = $(this);
+                    self.animate({
+                        "stroke-width": "4px",
+                    }, 100);
+                    var text = "";
+                    if (self.attr("r") <= 1) {
+                        var text = "<p><strong>Station " + self.attr("stopid") + "</strong><br/><span>" + self.attr("name") + "</span></p>";
+                        text += "<p><strong>Lines</strong><br/><span>" + self.attr("lines") + "</span></p>";
+                        text += "<p><strong>Average Delay</strong><br/> < 1 minute</p>";
+                    } else {
+                        var text = "<p><strong>Station " + self.attr("stopid") + "</strong><br/><span>" + self.attr("name") + "</span></p>";
+                        text += "<p><strong>Lines</strong><br/><span>" + self.attr("lines") + "</span></p>";
+                        text += "<p><strong>Average Delay</strong><br/> " + self.attr("delay") + " minutes</p>";
+                    };
+                    $("#info").show().html(text);
+                })
+                .on("mouseout", function(self) {
+                    self = $(this);
+                    self.animate({
+                        "stroke-width": 0,
+                        //"opacity": .3
+                    }, 100);
+                    $("#info").hide().html("");
+                })
+            loader.run();
+        });
+    };
 
-})();
+    loader.push(lines);
+    loader.push(stops);
+    loader.run();
+
+    // zoom in & out buttons
+    $("#zoom-in").on("click", function() {
+        var newScale = projection.scale() + 100000;
+        projection.scale(newScale);
+        group.selectAll("path").attr("d", path);
+        group.selectAll("circle.stop").attr("cx", function(d) {
+            return projection(d.geometry.coordinates)[0]
+        });
+        group.selectAll("circle.stop").attr("cy", function(d) {
+            return projection(d.geometry.coordinates)[1]
+        });
+        // important! assigns the new scale to the zoom mouse behavior
+        var zoom = d3.behavior.zoom()
+           .translate(projection.translate())
+           .scale(newScale)
+           .scaleExtent([75000,360000])
+           .on("zoom", function() {
+            projection.translate(d3.event.translate).scale(d3.event.scale);
+            group.selectAll("path").attr("d", path);
+            group.selectAll("circle.stop").attr("cx", function(d) {
+                return projection(d.geometry.coordinates)[0]
+            });
+            group.selectAll("circle.stop").attr("cy", function(d) {
+                return projection(d.geometry.coordinates)[1]
+            });
+        });
+        group.call(zoom);
+    });
+    $("#zoom-out").on("click", function() {
+        var newScale = projection.scale() - 100000;
+        projection.scale(newScale);
+        group.selectAll("path").attr("d", path);
+        group.selectAll("circle.stop").attr("cx", function(d) {
+            return projection(d.geometry.coordinates)[0]
+        });
+        group.selectAll("circle.stop").attr("cy", function(d) {
+            return projection(d.geometry.coordinates)[1]
+        });
+        // important! assigns the new scale to the zoom mouse behavior
+        var zoom = d3.behavior.zoom()
+           .translate(projection.translate())
+           .scale(newScale)
+           .scaleExtent([75000,360000])
+           .on("zoom", function() {
+            projection.translate(d3.event.translate).scale(d3.event.scale);
+            group.selectAll("path").attr("d", path);
+            group.selectAll("circle.stop").attr("cx", function(d) {
+                return projection(d.geometry.coordinates)[0]
+            });
+            group.selectAll("circle.stop").attr("cy", function(d) {
+                return projection(d.geometry.coordinates)[1]
+            });
+        });
+        group.call(zoom);
+    });
+});

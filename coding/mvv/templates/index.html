@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block navbar %}
 <ul class="nav navbar-nav">
-    <li class=""><a href="{{ url_for('index') }}">Accessibility</a></li>
-    <li class=""><a href="{{ url_for('travel') }}">Travel Time</a></li>
-    <li class=""><a href="{{ url_for('combined') }}">Combined</a></li>
-    <li class="active"><a href="{{ url_for('about') }}">About</a></li>
+    <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+    <li class=""><a href="{{ url_for('mvv1') }}">Best Travel Mode</a></li>
+    <li class=""><a href="{{ url_for('mvv2') }}">Transit Efficiency</a></li>
+    <li class=""><a href="{{ url_for('mvv3') }}">Transit Delay</a></li>
 </ul>
 {% endblock %}
 

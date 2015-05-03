@@ -1,29 +1,84 @@
-{% extends "index.html" %}
+{% extends "layout.html" %}
+{% block css %}
+<link href="{{ url_for('static', filename='css/mvv3.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block navbar %}
 <ul class="nav navbar-nav">
-    <li class=""><a href="{{ url_for('index') }}">Accessibility</a></li>
-    <li class=""><a href="{{ url_for('travel') }}">Travel Time</a></li>
-    <li class="active"><a href="{{ url_for('combined') }}">Combined</a></li>
-    <li class=""><a href="{{ url_for('about') }}">About</a></li>
+    <li class=""><a href="{{ url_for('index') }}">Home</a></li>
+    <li class=""><a href="{{ url_for('mvv1') }}">Best Travel Mode</a></li>
+    <li class=""><a href="{{ url_for('mvv2') }}">Transit Efficiency</a></li>
+    <li class="active"><a href="{{ url_for('mvv3') }}">Transit Delay</a></li>
 </ul>
 {% endblock %}
 
-{% block menu %}
-{{ super() }}
-{% endblock %}
-
 {% block main %}
-        <div class="combined row">
-            <div class="col-md-6">
-                <div id="map"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="map2"></div>
-            </div>
-        </div>
+<div id="viz"></div>
+
+<div id="spin"></div>
+
+<div id="zoom">
+    <a id="zoom-in" href="#"><img src="{{ url_for('static', filename="img/zoom-in.png") }}" alt="zoom in" width="30" height="30" /></a>
+    <a id="zoom-out" href="#"><img src="{{ url_for('static', filename="img/zoom-out.png") }}" alt="zoom out" width="30" height="30" /></a>
+</div>
+
+<div id="info"></div>
+
+<div id="legend">
+    <h3>Legend:</h3>
+    <ul>
+        <li><svg width="20" height="20"><path d="M 0 10 l 20 0" stroke="#2C7BC9" stroke-width="2" /></svg><span>line<span></li>
+        <li><svg width="20" height="20"><circle cx="10" cy="10" r="7" fill="#ED3A2D" /></svg><span>stop</span></li>
+    </ul>
+    <hr>
+    <h3>Frequency:</h3>
+    <ul>
+        <li>
+            <svg width="170" height="30">
+                <circle cx="3" cy="15" r="3" fill="#ED3A2D" />
+                <circle cx="155" cy="15" r="15" fill="#ED3A2D" />
+            </svg>
+            <span class="c-01">less frequent</span>
+            <span class="c-02">more frequent</span>
+        </li>
+    </ul>
+    <hr>
+    <h3>Delay:</h3>
+    <ul>
+        <li>
+            <svg width="170" height="10">
+                <rect width="170" height="10" fill="url(#gradient)" />
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#ED3A2D;" />
+                        <stop offset="100%" style="stop-color:#2e0101" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span class="c-01">shorter</span>
+            <span class="c-02">longer</span>
+        </li>
+    </ul>
+</div>
+
+<div id="container">
+    <div id="header">CTA Rail Lines</div>
+    <div id="content">
+        <p><button id="toggle-Blue" class="toggle-lines" style="background-color:#00a1de">Blue</button></p>
+        <p><button id="toggle-Brown" class="toggle-lines" style="background-color:#62361b">Brown</button></p>
+        <p><button id="toggle-Green" class="toggle-lines" style="background-color:#009b3a">Green</button></p>
+        <p><button id="toggle-Orange" class="toggle-lines" style="background-color:#f9461c">Orange</button></p>
+        <p><button id="toggle-Pink" class="toggle-lines" style="background-color:#e27ea6">Pink</button></p>
+        <p><button id="toggle-Purple" class="toggle-lines" style="background-color:#522398">Purple</button></p>
+        <p><button id="toggle-Red" class="toggle-lines" style="background-color:#c60c30">Red</button></p>
+        <p><button id="toggle-Yellow" class="toggle-lines" style="background-color:#f9e300; color:#222">Yellow</button></p>
+    </div>
+
+</div>
 {% endblock %}
 
 {% block js %}
 <!-- custom js -->
-<script src="{{ url_for('static', filename='js/combined.js') }}"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='js/mvv3.js') }}"></script>
 {% endblock %}
