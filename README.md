@@ -3,13 +3,12 @@
 
 ### Coding
 
-It contains code I write, if any, for this course.
+It contains code I wrote for this course.
 
 ### Reading
 
-It does not contain reading materials. It would a waste of space to upload those `pdf`s to Github.  
-Instead, it contains writing for reading.
+It does not contain reading materials. It would a waste of space to upload those `pdf` files to Github. Instead, it contains summaries and notes for reading.
 
 ### Writing
 
-It contains writing for everything else. E.g. for my own project.
+It contains writing for everything else (e.g. for my own project, for conference papers, etc).
