@@ -9,21 +9,111 @@
 {% endblock %}
 
 {% block main %}
-            <div class="about">
-                <h2>About</h2>
-                <p>The goal of this project is to develop accessibility metrics for a variety of activities in the Chicago Metropolitan area and to present them using a relatively simple, user friendly, online platform.  We aim to provide a resource that planners and policy makers can readily use to evaluate how well the transportation system is connecting people to activity locations around them.  Using the Accessibility Explorer, questions about how many jobs, or park land, or groceries etc. can be reached by residents of a specific neighborhood in reasonable time by a given mode can be answered quickly. One can evaluate the changes to accessibility over the course of a day as transit systems adjust their schedules to demand.  It allows us to see the spatial equities (and inequities) of access the transportation-land use nexus currently provides and which areas it affects. </p>
-                <p>The tool also has the capability to show how far one can travel from different neighborhoods/areas of the metropolitan area by different modes. Together with the accessibility explorer, this capability offers the user the see where changes in land use can be made to alter accessibility to jobs or other opportunities for different origins.</p>
-                <p>More detail on the Accessibility Explorer can be found in our report here: [in progress].</p>
+<div class="about">
 
-                <h2>Sponsors</h2>
-                <p>The Metropolitan Chicago Accessibility Explorer was funded by the <a href="http://utc.webhost.uic.edu/metsi/" target="_blank">Metropolitan Transportation Support Initiative (METSI)</a> and the National Center for Transit Research (NCTR-USF) through UIC's <a href="http://utc.uic.edu/" target="_blank">Urban Transportation Center</a>. </p>
-                <p>The project was undertaken by the <a href="http://ntilahun.com/" target="_blank">Urban Transportation & Behavior Research Group</a> at the Department of Urban Planning and Policy at UIC. </p>
+<h1>CS 524 Minimal Viable Visualizations</h1>
 
-                <h2>Questions</h2>
+<h2>Best Travel Mode</h2>
 
-                <p>Please contact <a href="http://ntilahun.com/" target="_blank">Dr. Nebiyou Tilahun</a> at ntilahun at uic dot edu.</p>
-                <p>Server and website are maintained by <a href="http://joysword.com/" target="_blank">Shi Yin</a>. Shi can be reached at syin8 at uic dot edu.</p>
+<h3>Introduction</h3>
 
-                [This page is under construction.]
-            </div>
+<p>We walk to next block to get fast food to eat. We take buses or trains to work. We drive to suburbs or another city to play. We have different travel modes, each with a different scale and pattern. Sometimes walking is better than taking a bus, sometimes bicycling maybe a better choice than driving, considering the overhead of driving a car (parking, walking after parking, etc)</p>
+
+<p>This project shows the idea of visualizing the fastest mode of transportation from each point in a city to every other point in the city.</p>
+
+<h3>Data processing</h3>
+
+<p>We calculated the times it takes from the centroid of each block group in Chicago to reach the centroid of every other block group in the city by public transit and by walking.</p>
+
+<h3>The visualization</h3>
+
+<p>This map is activated by selecting a specific departure point. Once the departure point is selected, the rest of the city will be colored based on the fastest form of transportation. Yellow means Transit is the better choice while red means Walking is faster than Transit.</p>
+
+<h3>Discussion</h3>
+
+<p>Currently the visualization compares only transit and walking, and looks a little bit tedium / boring / dull, but a more sophisticated implementaion of this idea should include a more variety of transportation modes and take other factors into account, such as travel costs, fuel cost, air pollution, etc, rather than comparing raw travel time. In these cases, slow modes like Walking and Bicycling will be comparable with Transit and with driving (which is the least economic and least environment friendly mode of transportation), and the coverage pattern of different colors will be more interesting.</p>
+
+<p><img src="{{ url_for('static', filename='img/sketch1.jpg') }}" alt="sketch-1"></p>
+
+<p>Sketch 1. a possible visualization of a sophisticated implementation</p>
+
+<p>We believe this kind of work will (at least) be useful in:</p>
+
+<ol>
+<li>helping people make wise decisions about transportation choices;</li>
+<li>helping transporation professionals to design better urban transporation systems.</li>
+</ol>
+
+<h2>Transit Efficiency</h2>
+
+<h3>Introduction</h3>
+
+<p>As we all know, traveling by public transit is one of the most economic and environmentally sustainable modes of urban transportation. How efficient a transit system works is very important in deciding whether to drive a car or to take a bus or subway.</p>
+
+<p>This project shows the idea of visualizing the efficiency of using public transit as an alternative to driving a car.</p>
+
+<h3>Data Processing</h3>
+
+<p>For each block group in Chicago, we queried the time it takes to reach every other block group by riding public transit and by driving a car. We then calculate the ratio of the latter to the former. This ratio represents the efficiency of a transit system. We linearly normalized efficiency scores by making the best value 10, giving a relative transit efficiency score for each neighborhood. </p>
+
+<h3>The visualization</h3>
+
+<p>This map is activated by selecting a specific departure point. Once the departure point is selected, the rest of the city will be colored based on the efficiency of public transit from the departure point to any other point in the city. Darker areas are where reaching by car is much faster than by public transit, while lighter areas are places where public transit represents a more viable alternative in terms of travel time.</p>
+
+<h3>Discussion</h3>
+
+<p>Currently the visualization takes only travel time into consideration. Same as <em>Best Travel Mode</em>, a more sophisticated definition of &#39;efficiency&#39; and a more complete calculation is necessary to make this idea more practical and the visualization more realistic and convincing. Factors to consider when calculating the true cost of a mode of transport include but not limited to the cost of the vehicle, the cost of fuel, and the effect on air quality.</p>
+
+<p>We believe this kind of work can (at least) contribute to:</p>
+
+<ol>
+<li>helping people make better choices between riding a bus or subway and driving a car;</li>
+<li>helping transporation professionals to identify defects in a traffic network, including the urban transporation system and the street network.</li>
+</ol>
+
+<h2>Transit Delay</h2>
+
+<h3>Introduction</h3>
+
+<p>Time is precious. Delays in public transit system are annoying. Frequent delays are less tolerant than occasional delays. how well do transit systems actually serve the diverse populations in a city</p>
+
+<p>If we have an understanding of how often and how long delays take place at a bus stop or subway station, we at least are able to avoid buying</p>
+
+<p>This project shows the idea of visualizing how long and how frequent delays happen in a transit system.</p>
+
+<h3>Data Processing</h3>
+
+<p>The data of this project is BOGUS. Two sets of data need to be collected and processed.</p>
+
+<p>The first set of data is the frequency a bus or a train stops at a stop or a station. This value is supposed to be measured by counting the number of times a bus or a strain passes through a stop or a station during some period of time. A week would be a good choice because trains run at different frequency in different days in a week but at similar frequencies in different weeks.</p>
+
+<p>The second set of data is the average delay times of a stop or a station, which is supposed to be calculated from the difference between the scheduled arrival times and actual arrival times.</p>
+
+<h3>The visualization</h3>
+
+<p>This visualization consists of subway lines and subway stations. Subway  lines are represented by lines and subway stations are represented by dots. The size of a dot represents the frequency in which a train passes through that station, and the varying shade of the dots represent the average delay time for each station.</p>
+
+<p>Hovering mouse over a dot brings up detailed information about the length of average delay for the corresponding station.</p>
+
+<p>Each individual subway line can be highlighted upon selection.</p>
+
+<h3>Discussion</h3>
+
+<p>Currently the visualization uses bogus data, but the idea is clearly conveyed.</p>
+
+<p>A more sophisticated implementation would use real data (of course) and for both subway stations and bus stops. Actually bus stops would probably generate more interesting results than subways as buses would have a much higher tendency to arrive later than scheduled than trains, and different routes of buses would definitely have very different delay times.</p>
+
+<p>Potentially, this visualization can also be used together with other geographic or demographic data visualized as map layers to look for correlations between incomes, education levels, etc. and transit delays, to see how the diverse populations in a city is served equally or inequally.</p>
+
+<p><img src="{{ url_for('static', filename='img/sketch2.jpg') }}" alt="sketch-2"></p>
+
+<p>Sketch 2. this visualization overlaid with demographic data layer</p>
+
+<p>We believe this kind of work is (at least) good for:</p>
+
+<ol>
+<li>helping individuals to locate frequently delayed bus stops and subway stations;</li>
+<li>helping transporation practitioners and economic researchers to locate equity impacts of transit services.</li>
+</ol>
+</div>
 {% endblock %}

@@ -298,6 +298,32 @@ body {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
 }
 
+.about h1 {
+  font-size: 28px;
+  color: black; }
+
+.about h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+.about h3 {
+  font-size: 18px; }
+
+.about h4 {
+  font-size: 16px; }
+
+.about h5 {
+  font-size: 14px; }
+
+.about h6 {
+  color: #777777;
+  font-size: 14px; }
+.about img {
+  max-width: 95%;
+  max-height: 640px;
+}
+
 .combined.row {
   margin: 0 2px;
 }
